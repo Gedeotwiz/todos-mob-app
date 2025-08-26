@@ -11,7 +11,11 @@ interface LoginFormValues {
   password: string;
 }
 
-export default function LoginForm() {
+interface IProps {
+  onPress?: () => void;       
+}
+
+export default function LoginForm(Props:IProps) {
      const [showPassword, setShowPassword] = useState(false);
      const router = useRouter();
   return (
@@ -57,7 +61,7 @@ export default function LoginForm() {
              <View>
             <View className='flex flex-row justify-between items-center'>
                 <Text>Password</Text>
-                <Text className='text-blue-600'>Forgot Password</Text>
+                <Text className='text-blue-600' onPress={Props.onPress}>Forgot Password</Text>
             </View>
             <View className="flex-row items-center border border-gray-400 rounded-[8px] px-4">
             <TextInput
