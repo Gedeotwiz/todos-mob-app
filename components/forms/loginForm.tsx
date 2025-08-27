@@ -2,14 +2,13 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from "expo-router";
 import { Formik } from 'formik';
 import { useState } from 'react';
-import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import CheckBoxExample from '../__ui__/checkbox';
+import { useLoginMutation } from '../rtk/auth/api.slice';
+import { loginInput } from '../rtk/types/integration.type';
 import FormButton from './formButton';
 
-interface LoginFormValues {
-  email: string;
-  password: string;
-}
+
 
 interface IProps {
   onPress?: () => void;       
@@ -18,12 +17,14 @@ interface IProps {
 export default function LoginForm(Props:IProps) {
      const [showPassword, setShowPassword] = useState(false);
      const router = useRouter();
+
+     const [login,{isLoading}] = useLoginMutation()
   return (
     <View>
-      <Formik<LoginFormValues>
+      <Formik<loginInput>
         initialValues={{ email: '', password: '' }}
         validate={(values) => {
-          const errors: Partial<LoginFormValues> = {};
+          const errors: Partial<loginInput> = {};
           if (!values.email) {
             errors.email = 'Required';
           } else if (
@@ -36,12 +37,18 @@ export default function LoginForm(Props:IProps) {
           }
           return errors;
         }}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert('Login successfult');
-            setSubmitting(false);
-            router.push("/")
-          }, 400);
+        onSubmit={async(values, { setSubmitting }) => {
+        try {
+            const res = await login(values).unwrap();
+             Alert.alert("Success", "login successfully!");
+                    console.log("Response:", res);
+                    router.push("/")
+             } catch (error: any) {
+              Alert.alert("Error", error?.data?.message || "Something went wrong");
+              console.log("Error:", error);
+              } finally {
+                    setSubmitting(false);
+                  }
         }}
       >
         {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
@@ -84,7 +91,8 @@ export default function LoginForm(Props:IProps) {
 
             <CheckBoxExample label='Keep me signed in'/>
             <View>
-             <FormButton onPress={handleSubmit as any} name='Submit' disabled={isSubmitting}/>
+             <FormButton onPress={handleSubmit as any} name={isLoading ? "Loading..." : "Submit"}
+                  disabled={isSubmitting || isLoading}/>
             </View>
           </View>
         )}

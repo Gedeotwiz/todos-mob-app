@@ -1,6 +1,6 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { CreateUserInput ,IAPIResponse} from '../types/integration.type'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { Platform } from 'react-native';
+import { CreateUserInput, IAPIResponse, loginInput, loginOutput } from '../types/integration.type';
 
 
 
@@ -25,8 +25,16 @@ export const authApi = createApi({
             method:"POST",
             body:DTO
          })
+    }),
+
+    login:build.mutation<IAPIResponse<loginOutput>,loginInput>({
+       query:DTO =>({
+            url:"auth/login",
+            method:"POST",
+            body:DTO
+         })
     })
   }),
 })
 
-export const { useGetUserQuery,useSignUpMutation} = authApi
+export const { useGetUserQuery,useSignUpMutation,useLoginMutation} = authApi
