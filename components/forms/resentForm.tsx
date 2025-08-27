@@ -1,7 +1,7 @@
 import { useRouter } from "expo-router";
 import { Formik } from 'formik';
 import { Text, View } from "react-native";
-import OtpInput from "../__ui__/otpCode";
+import OtpInputField from "../__ui__/otpCode";
 import FormButton from "./formButton";
 
 interface ResentFormValue{
@@ -29,7 +29,7 @@ export default function ResentForm(props:IProps){
             >
                 {({values, handleChange,handleSubmit, isSubmitting })=>(
                      <View className="flex flex-col gap-8 pt-20">
-                        <OtpInput code={values.code} handleChange={handleChange("code")} />
+                        <OtpInputField code={values.code} handleChange={handleChange("code")} />
                         <FormButton onPress={handleSubmit} disabled={isSubmitting} name="Submit"/>
                     </View>
                     

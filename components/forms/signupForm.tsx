@@ -1,28 +1,26 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Formik } from 'formik';
 import { useState } from 'react';
-import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Text, TextInput, TouchableOpacity, View ,Alert} from "react-native";
 import CheckBoxExample from '../__ui__/checkbox';
 import FormButton from './formButton';
 import PhoneNumberInput from './phoneNumber';
+import { useSignUpMutation } from '../rtk/auth/api.slice';
+import { CreateUserInput } from '../rtk/types/integration.type';
 
-interface LoginFormValues {
- names:string,
-  email: string;
-  password: string;
-  phone:string
-}
 
 
 export default function SignUpForm(){
-     const [password, setPassword] = useState('');
      const [showPassword, setShowPassword] = useState(false);
+
+      const [signUp, { isLoading }] = useSignUpMutation();
+
    return(
     <View>
-          <Formik<LoginFormValues>
+          <Formik<CreateUserInput>
             initialValues={{names:"", email: '',phone:"", password: '' }}
             validate={(values) => {
-              const errors: Partial<LoginFormValues> = {};
+              const errors: Partial<CreateUserInput> = {};
               if (!values.email) {
                 errors.email = 'Required';
               } else if (
@@ -35,14 +33,20 @@ export default function SignUpForm(){
               }
               return errors;
             }}
-            onSubmit={(values, { setSubmitting }) => {
-              setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
-                setSubmitting(false);
-              }, 400);
-            }}
+            onSubmit={async (values, { setSubmitting }) => {
+          try {
+            const res = await signUp(values).unwrap();
+            Alert.alert("Success", "Account created successfully!");
+            console.log("Response:", res);
+          } catch (error: any) {
+            Alert.alert("Error", error?.data?.message || "Something went wrong");
+            console.log("Error:", error);
+          } finally {
+            setSubmitting(false);
+          }
+        }}
           >
-            {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
+            {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting,setFieldValue }) => (
               <View className='flex gap-4'>
                 <View>
                 <Text>Full Name</Text>
@@ -68,7 +72,7 @@ export default function SignUpForm(){
                 </View>
 
                 <View>
-                    <PhoneNumberInput/>
+                    <PhoneNumberInput onChangeFormatted={(val) => setFieldValue('phone', val)}/>
                 </View>
     
                  <View>
@@ -81,8 +85,8 @@ export default function SignUpForm(){
                   className="flex-1"
                   placeholder="*********"
                   secureTextEntry={!showPassword}
-                 value={password}
-                 onChangeText={setPassword}
+                 value={values.password}
+                 onChangeText={handleChange("password")}
                 />
                  <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
                    <Ionicons
@@ -96,7 +100,8 @@ export default function SignUpForm(){
                 </View>
                   <CheckBoxExample label='By Creating an Account, i accept Hiring Hub terms of Use and Privacy Policy'/>
                 <View>
-                 <FormButton onPress={handleSubmit as any} name='Submit' disabled={isSubmitting}/>
+                 <FormButton onPress={handleSubmit as any} name={isLoading ? "Loading..." : "Submit"}
+                  disabled={isSubmitting || isLoading}/>
                 </View>
               </View>
             )}

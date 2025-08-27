@@ -1,8 +1,13 @@
+// phoneNumber.tsx
 import { useRef, useState } from "react";
 import { Text, View } from "react-native";
 import PhoneInput from "react-native-phone-number-input";
 
-export default function PhoneNumberInput() {
+interface Props {
+  onChangeFormatted?: (val: string) => void;
+}
+
+export default function PhoneNumberInput({ onChangeFormatted }: Props) {
   const phoneInput = useRef<PhoneInput>(null);
   const [value, setValue] = useState("");
   const [formattedValue, setFormattedValue] = useState("");
@@ -17,13 +22,16 @@ export default function PhoneNumberInput() {
         defaultCode="RW"
         layout="first"
         onChangeText={(text) => setValue(text)}
-        onChangeFormattedText={(text) => setFormattedValue(text)}
+        onChangeFormattedText={(text) => {
+          setFormattedValue(text);
+          if (onChangeFormatted) onChangeFormatted(text);
+        }}
         containerStyle={{
           borderWidth: 1,
           borderColor: "#ccc",
           borderRadius: 8,
-          height: 38, 
-          width:"100%"
+          height: 38,
+          width: "100%",
         }}
         textContainerStyle={{
           paddingVertical: 0,
@@ -40,7 +48,6 @@ export default function PhoneNumberInput() {
           fontSize: 14,
           paddingHorizontal: 2,
         }}
-        
       />
 
       {formattedValue ? (

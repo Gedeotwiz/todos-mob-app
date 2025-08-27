@@ -17,7 +17,7 @@ export default function ForgotPassword(){
             <Text>Enter the email address registered with your account. We'll send you a link to reset your password.</Text>
           </View>
           <View>
-             <ForgotForm onPress={()=>router.push("./login")}/>
+             <ForgotForm onPress={()=>router.push("./resentPassword")}/>
           </View>
      </View>
    )

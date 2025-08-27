@@ -1,4 +1,4 @@
-import { useRouter } from "expo-router";
+
 import { Formik } from 'formik';
 import { Text, TextInput, View } from "react-native";
 import FormButton from "./formButton";
@@ -13,7 +13,6 @@ interface IProps{
 
 
 export default function ForgotForm(props:IProps){
-    const router = useRouter()
     return (
         <View className="flex flex-col gap-5">
             <Formik<ForgotFormValue>
@@ -22,7 +21,6 @@ export default function ForgotForm(props:IProps){
              setTimeout(() => {
              alert('Login successfult');
              setSubmitting(false);
-              router.push("./resentPassword")
             }, 400);
         }}
             >

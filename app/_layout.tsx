@@ -3,6 +3,8 @@ import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import 'react-native-reanimated';
 import "../global.css";
+import { Provider } from 'react-redux';
+import { store } from '@/components/rtk/_store_/store';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 
@@ -19,11 +21,13 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      <Provider store={store}>
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="onboarding" />
         <Stack.Screen name="(tabs)" />
         <Stack.Screen name="+not-found" />
       </Stack>
+      </Provider>
     </ThemeProvider>
   );
 }

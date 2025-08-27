@@ -13,12 +13,12 @@ export default function ResentPassword(){
            <Image source={back} className="w-10 h-10" />
           </TouchableOpacity>
           <View>
-            <Text className="font-semibold text-2xl py-5">Please verify your email address</Text>
+            <Text className="font-semibold text-xl py-5">Please verify your email address</Text>
             <Text>We’ve sent an email to becca@gmail.com, please enter the code below.</Text>
           </View>
           <View>
-             <ResentForm onPress={()=>router.push("/")}/>
+             <ResentForm onPress={()=>router.push("./login")}/>
           </View>
      </View>
    )
-}
+} 
