@@ -1,12 +1,15 @@
-import { Ionicons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+import { Input } from '@ui-kitten/components';
 import { useRouter } from "expo-router";
 import { Formik } from 'formik';
 import { useState } from 'react';
-import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Text, View } from 'react-native';
 import CheckBoxExample from '../__ui__/checkbox';
 import { useLoginMutation } from '../rtk/auth/api.slice';
 import { loginInput } from '../rtk/types/integration.type';
 import FormButton from './formButton';
+
+
 
 
 
@@ -15,8 +18,28 @@ interface IProps {
 }
 
 export default function LoginForm(Props:IProps) {
-     const [showPassword, setShowPassword] = useState(false);
      const router = useRouter();
+     const [secureTextEntry, setSecureTextEntry] = useState(true);
+
+     const [checked, setChecked] = useState(false);
+
+       const toggleSecureEntry = (): void => {
+    setSecureTextEntry(!secureTextEntry);
+  };
+
+
+
+    const renderIcon = (props: any) => (
+    <MaterialIcons
+      name={secureTextEntry ? "visibility-off" : "visibility"}
+      size={24}
+      color="gray"
+      onPress={toggleSecureEntry}
+      {...props}
+    />
+  );
+
+
 
      const [login,{isLoading}] = useLoginMutation()
   return (
@@ -54,39 +77,24 @@ export default function LoginForm(Props:IProps) {
         {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
           <View className='flex gap-4'>
             <View>
-            <Text>Email Adress</Text>
-            <TextInput
-              placeholder="tgedeon@gmail.com"
-              onChangeText={handleChange('email')}
-              onBlur={handleBlur('email')}
-              value={values.email}
-              className='border border-gray-400 rounded-[8px] px-4 py-3'
+            <Input value={values.email}
+             label='Email Adress'
+             placeholder='tgedeon@gmail.com'
+             onChangeText={handleChange('email')}
             />
-            {errors.email && touched.email && <Text style={{ color: 'red' }}>{errors.email}</Text>}
             </View>
 
              <View>
-            <View className='flex flex-row justify-between items-center'>
-                <Text>Password</Text>
+            <View className='flex flex-row justify-end items-end'>
                 <Text className='text-blue-600' onPress={Props.onPress}>Forgot Password</Text>
             </View>
-            <View className="flex-row items-center border border-gray-400 rounded-[8px] px-4">
-            <TextInput
-              className="flex-1"
-              placeholder="*********"
-              secureTextEntry={!showPassword}
-             value={values.password}
-             onChangeText={handleChange("password")}
-            />
-             <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-               <Ionicons
-                name={showPassword ? 'eye' : 'eye-off'}
-                size={20}
-                color="gray"
-               />
-             </TouchableOpacity>
-           </View>
-            {errors.password && touched.password && <Text style={{ color: 'red' }}>{errors.password}</Text>}
+              <Input 
+                value={values.password}
+                onChangeText={handleChange("password")}
+                placeholder="*********"
+                accessoryRight={renderIcon}
+                label="Password"
+              />
             </View>
 
             <CheckBoxExample label='Keep me signed in'/>

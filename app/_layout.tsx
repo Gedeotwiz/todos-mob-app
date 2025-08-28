@@ -1,10 +1,13 @@
+import { store } from '@/components/rtk/_store_/store';
+import * as eva from '@eva-design/eva';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { ApplicationProvider } from '@ui-kitten/components';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import 'react-native-reanimated';
-import "../global.css";
 import { Provider } from 'react-redux';
-import { store } from '@/components/rtk/_store_/store';
+import "../global.css";
+
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 
@@ -20,7 +23,10 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <>
+    
+     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      <ApplicationProvider {...eva} theme={eva.light}>
       <Provider store={store}>
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="onboarding" />
@@ -28,6 +34,8 @@ export default function RootLayout() {
         <Stack.Screen name="+not-found" />
       </Stack>
       </Provider>
+      </ApplicationProvider>
     </ThemeProvider>
+    </>
   );
 }

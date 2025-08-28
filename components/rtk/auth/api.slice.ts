@@ -1,19 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { Platform } from 'react-native';
 import { CreateUserInput, IAPIResponse, loginInput, loginOutput } from '../types/integration.type';
 
-
-
-const BASE_URL =
-  Platform.OS === 'android' || Platform.OS === 'ios'
-    ? 'http://192.168.1.172:3000/api/v1'
-    : 'http://localhost:3000/api/v1';
 
 
 
 export const authApi = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://4fb9e3212c2b.ngrok-free.app/api/v1'}),
   endpoints: (build) => ({
     getUser: build.query({
       query: (name:string) => `pokemon/${name}`,

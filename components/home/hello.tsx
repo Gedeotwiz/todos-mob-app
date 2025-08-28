@@ -9,20 +9,32 @@ import image from "../../assets/images/profile.jpeg";
 export default function Hello(){
      const [notification]= useState(null)
 
+     const hour = new Date().getHours();
+
+  let greeting = "Hello 👋";
+  if (hour >= 5 && hour < 12) {
+    greeting = "Morning 👋";
+  } else if (hour >= 12 && hour < 18) {
+    greeting = "Goog afternoon 👋";
+  } else {
+    greeting = "Good evening 👋";
+  }
+
+
      
     return (
-        <View className="flex flex-row justify-between items-center">
+        <View className="flex flex-row justify-between items-center pt-5">
           <View className="flex flex-row justify-center items-start gap-4">
               <Image source={image} className="w-12 h-12 rounded-full"/>
              <View>
-                <Text >Morning 👋</Text>
-                <Text >Jant Gedeon </Text>
+                <Text >{greeting}</Text>
+                <Text className="font-bold">Twizerimana Gedeon </Text>
              </View>
           </View>
           <View className="flex flex-row gap-2 justify-center items-center">
              <Image source={notification ? notify : misnotify} className="w-6 h-6"/>
-             <View className="border border-gray-400 rounded-full p-3">
-                <Image source={menu} className="w-6 h-6"/>
+             <View className="border border-gray-400 rounded-full p-1">
+                <Image source={menu} className="w-5 h-5"/>
              </View>
           </View>
        </View>

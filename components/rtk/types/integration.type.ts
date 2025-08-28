@@ -10,3 +10,12 @@ export interface IAPIResponse<T> {
     payload: T
     translatedMessage: string
 }
+
+export interface loginInput{
+    email:string,
+    password:string
+}
+
+export interface loginOutput{
+    token:string
+}
