@@ -25,7 +25,7 @@ export default function Login(){
             <GoagleButton name="Sign in with Goagle" icon={goagle}/>
             <DividerWithText text="or sign in with"/>
             <View>
-                <LoginForm onPress={()=>router.push("./forgotPassword")}/>
+                <LoginForm onPress={()=>router.push("./forgotPassword")} onLogin={()=>router.push("./(tabs)")}/>
             </View>
              <View className='flex flex-row justify-center items-center gap-2 pb-10 pt-5'>
                 <Text>Don't have an Account?</Text>

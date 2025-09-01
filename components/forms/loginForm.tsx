@@ -17,15 +17,13 @@ import FormButton from './formButton';
 
 
 interface IProps {
-  onPress?: () => void;       
+  onPress?: () => void;
+  onLogin?:() => void       
 }
 
 export default function LoginForm(Props:IProps) {
      const router = useRouter();
       const [keepSignedIn, setKeepSignedIn] = useState(false); 
-
-     
-
 
 
      const [login,{isLoading}] = useLoginMutation()
@@ -58,7 +56,9 @@ export default function LoginForm(Props:IProps) {
                  Alert.alert("Success", "login successfully!", [
                    {
                     text: "OK",
-                     onPress: () => router.push('/'),
+                     onPress: () => {
+                    if (Props.onLogin) Props.onLogin();
+                  },
                     },
                   ]);
              } catch (error: any) {
