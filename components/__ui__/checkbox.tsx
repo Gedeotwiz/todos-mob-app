@@ -1,22 +1,21 @@
 import Checkbox from "expo-checkbox";
-import { useState } from "react";
 import { Text, View } from "react-native";
 
-interface IProps{
-    label:string
+interface IProps {
+  label: string;
+  value: boolean;
+  onChange: (val: boolean) => void;
 }
 
-export default function CheckBoxExample(props:IProps) {
-  const [isChecked, setIsChecked] = useState(false);
-
+export default function CheckBoxExample({ label, value, onChange }: IProps) {
   return (
-    <View className="flex-row gap-2  space-x-2 p-4">
+    <View className="flex-row gap-2 p-4">
       <Checkbox
-        value={isChecked}
-        onValueChange={setIsChecked}
-        color={isChecked ? "#2563EB" : undefined} 
+        value={value}
+        onValueChange={onChange}
+        color={value ? "#2563EB" : undefined}
       />
-      <Text>{props.label}</Text>
+      <Text>{label}</Text>
     </View>
   );
 }

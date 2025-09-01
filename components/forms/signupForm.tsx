@@ -1,19 +1,21 @@
-import { Ionicons } from '@expo/vector-icons';
+import { UseTogleEye } from '@/hooks/usetogle';
+import { Input } from '@ui-kitten/components';
 import { Formik } from 'formik';
 import { useState } from 'react';
-import { Text, TextInput, TouchableOpacity, View ,Alert} from "react-native";
+import { Alert, View } from "react-native";
 import CheckBoxExample from '../__ui__/checkbox';
-import FormButton from './formButton';
-import PhoneNumberInput from './phoneNumber';
 import { useSignUpMutation } from '../rtk/auth/api.slice';
 import { CreateUserInput } from '../rtk/types/integration.type';
+import FormButton from './formButton';
+import PhoneNumberInput from './phoneNumber';
 
 
 
 export default function SignUpForm(){
-     const [showPassword, setShowPassword] = useState(false);
-
+     const [keepSignedIn, setKeepSignedIn] = useState(false); 
       const [signUp, { isLoading }] = useSignUpMutation();
+
+      const {renderIcon} = UseTogleEye()
 
    return(
     <View>
@@ -46,29 +48,24 @@ export default function SignUpForm(){
           }
         }}
           >
-            {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting,setFieldValue }) => (
+            {({ values, handleChange, handleBlur, handleSubmit, isSubmitting,setFieldValue }) => (
               <View className='flex gap-4'>
                 <View>
-                <Text>Full Name</Text>
-                <TextInput
-                  placeholder="Your names"
-                  onChangeText={handleChange('names')}
-                  onBlur={handleBlur('names')}
-                  value={values.names}
-                  className='border border-gray-400 rounded-[8px] px-4 py-3'
-                />
-                {errors.names && touched.names && <Text style={{ color: 'red' }}>{errors.names}</Text>}
+                  <Input 
+                     value={values.names}
+                     placeholder="Your names"
+                     onChangeText={handleChange('names')}
+                     label='Your names'
+                  />
                 </View>
                 <View>
-                <Text>Email Adress</Text>
-                <TextInput
-                  placeholder="tgedeon@gmail.com"
-                  onChangeText={handleChange('email')}
-                  onBlur={handleBlur('email')}
-                  value={values.email}
-                  className='border border-gray-400 rounded-[8px] px-4 py-3'
-                />
-                {errors.email && touched.email && <Text style={{ color: 'red' }}>{errors.email}</Text>}
+                  <Input
+                     value={values.email}
+                     placeholder="tgedeon@gmail.com"
+                     onChangeText={handleChange('email')}
+                     onBlur={handleBlur('email')}
+                     label='Email Address'
+                  />
                 </View>
 
                 <View>
@@ -76,29 +73,21 @@ export default function SignUpForm(){
                 </View>
     
                  <View>
-                <View className='flex flex-row justify-between items-center'>
-                    <Text>Password</Text>
-                    <Text className='text-blue-600'>Forgot Password</Text>
-                </View>
-                <View className="flex-row items-center border border-gray-400 rounded-[8px] px-4">
-                <TextInput
-                  className="flex-1"
-                  placeholder="*********"
-                  secureTextEntry={!showPassword}
-                 value={values.password}
-                 onChangeText={handleChange("password")}
-                />
-                 <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-                   <Ionicons
-                    name={showPassword ? 'eye' : 'eye-off'}
-                    size={20}
-                    color="gray"
+                   <Input 
+                     value={values.password}
+                     placeholder='***********'
+                     label='Password'
+                     onChangeText={handleChange('password')}
+                     onBlur={handleBlur('password')}
+                     accessoryRight={renderIcon}
                    />
-                 </TouchableOpacity>
-               </View>
-                {errors.password && touched.password && <Text style={{ color: 'red' }}>{errors.password}</Text>}
+                
                 </View>
-                  <CheckBoxExample label='By Creating an Account, i accept Hiring Hub terms of Use and Privacy Policy'/>
+                    <CheckBoxExample
+                      label="By Creating an Account, i accept Hiring Hub terms of Use and Privacy Policy"
+                        value={keepSignedIn}
+                       onChange={setKeepSignedIn}
+                    />
                 <View>
                  <FormButton onPress={handleSubmit as any} name={isLoading ? "Loading..." : "Submit"}
                   disabled={isSubmitting || isLoading}/>

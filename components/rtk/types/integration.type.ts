@@ -17,5 +17,5 @@ export interface loginInput{
 }
 
 export interface loginOutput{
-    token:string
+    accessToken:string
 }

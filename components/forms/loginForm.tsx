@@ -1,4 +1,6 @@
-import { MaterialIcons } from '@expo/vector-icons';
+
+import { UseTogleEye } from '@/hooks/usetogle';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Input } from '@ui-kitten/components';
 import { useRouter } from "expo-router";
 import { Formik } from 'formik';
@@ -13,35 +15,21 @@ import FormButton from './formButton';
 
 
 
+
 interface IProps {
   onPress?: () => void;       
 }
 
 export default function LoginForm(Props:IProps) {
      const router = useRouter();
-     const [secureTextEntry, setSecureTextEntry] = useState(true);
+      const [keepSignedIn, setKeepSignedIn] = useState(false); 
 
-     const [checked, setChecked] = useState(false);
-
-       const toggleSecureEntry = (): void => {
-    setSecureTextEntry(!secureTextEntry);
-  };
-
-
-
-    const renderIcon = (props: any) => (
-    <MaterialIcons
-      name={secureTextEntry ? "visibility-off" : "visibility"}
-      size={24}
-      color="gray"
-      onPress={toggleSecureEntry}
-      {...props}
-    />
-  );
+     
 
 
 
      const [login,{isLoading}] = useLoginMutation()
+     const {renderIcon} = UseTogleEye()
   return (
     <View>
       <Formik<loginInput>
@@ -63,9 +51,16 @@ export default function LoginForm(Props:IProps) {
         onSubmit={async(values, { setSubmitting }) => {
         try {
             const res = await login(values).unwrap();
-             Alert.alert("Success", "login successfully!");
-                    console.log("Response:", res);
-                    router.push("/")
+             const token = res.payload?.accessToken
+              if (token) {
+                 await AsyncStorage.setItem('token', token);
+               }
+                 Alert.alert("Success", "login successfully!", [
+                   {
+                    text: "OK",
+                     onPress: () => router.push('/'),
+                    },
+                  ]);
              } catch (error: any) {
               Alert.alert("Error", error?.data?.message || "Something went wrong");
               console.log("Error:", error);
@@ -74,13 +69,14 @@ export default function LoginForm(Props:IProps) {
                   }
         }}
       >
-        {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
+        {({ values,handleBlur,handleChange,handleSubmit, isSubmitting }) => (
           <View className='flex gap-4'>
             <View>
             <Input value={values.email}
-             label='Email Adress'
-             placeholder='tgedeon@gmail.com'
-             onChangeText={handleChange('email')}
+              label='Email Adress'
+              placeholder='tgedeon@gmail.com'
+              onChangeText={handleChange('email')}
+              onBlur={handleBlur('email')}
             />
             </View>
 
@@ -94,10 +90,15 @@ export default function LoginForm(Props:IProps) {
                 placeholder="*********"
                 accessoryRight={renderIcon}
                 label="Password"
+                onBlur={handleBlur('password')}
               />
             </View>
 
-            <CheckBoxExample label='Keep me signed in'/>
+            <CheckBoxExample
+              label="Keep me signed in"
+              value={keepSignedIn}
+              onChange={setKeepSignedIn}
+            />
             <View>
              <FormButton onPress={handleSubmit as any} name={isLoading ? "Loading..." : "Submit"}
                   disabled={isSubmitting || isLoading}/>

@@ -1,6 +1,7 @@
 
+import { Input } from '@ui-kitten/components';
 import { Formik } from 'formik';
-import { Text, TextInput, View } from "react-native";
+import { Text, View } from "react-native";
 import FormButton from "./formButton";
 
 interface ForgotFormValue{
@@ -27,14 +28,12 @@ export default function ForgotForm(props:IProps){
                 {({values, handleChange, handleBlur, handleSubmit, isSubmitting })=>(
                      <View className="flex flex-col gap-8 pt-20">
                        <View>
-                         <Text>Email Adress</Text>
-                         <TextInput
-                            placeholder="tgedeon@gmail.com"
-                            onChangeText={handleChange('email')}
-                             onBlur={handleBlur('email')}
+                          <Input 
                              value={values.email}
-                             className='border border-gray-400 rounded-[8px] px-4 py-3'
-                        />
+                             placeholder="tgedeon@gmail.com"
+                             onChangeText={handleChange('email')}
+                             label='Email Address'
+                          />
                        </View>
                         <FormButton onPress={handleSubmit} disabled={isSubmitting} name="Submit"/>
                     </View>

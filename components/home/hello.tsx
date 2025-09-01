@@ -23,7 +23,7 @@ export default function Hello(){
 
      
     return (
-        <View className="flex flex-row justify-between items-center pt-5">
+        <View className="flex flex-row justify-between items-center pt-5 px-4">
           <View className="flex flex-row justify-center items-start gap-4">
               <Image source={image} className="w-12 h-12 rounded-full"/>
              <View>
