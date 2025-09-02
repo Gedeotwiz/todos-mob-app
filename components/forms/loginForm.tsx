@@ -27,7 +27,7 @@ export default function LoginForm(Props:IProps) {
 
 
      const [login,{isLoading}] = useLoginMutation()
-     const {renderIcon} = UseTogleEye()
+     const {renderIcon,secureTextEntry} = UseTogleEye()
   return (
     <View>
       <Formik<loginInput>
@@ -89,6 +89,7 @@ export default function LoginForm(Props:IProps) {
                 onChangeText={handleChange("password")}
                 placeholder="*********"
                 accessoryRight={renderIcon}
+                secureTextEntry={secureTextEntry}
                 label="Password"
                 onBlur={handleBlur('password')}
               />

@@ -15,7 +15,7 @@ export default function SignUpForm(){
      const [keepSignedIn, setKeepSignedIn] = useState(false); 
       const [signUp, { isLoading }] = useSignUpMutation();
 
-      const {renderIcon} = UseTogleEye()
+      const {renderIcon,secureTextEntry} = UseTogleEye()
 
    return(
     <View>
@@ -80,6 +80,7 @@ export default function SignUpForm(){
                      onChangeText={handleChange('password')}
                      onBlur={handleBlur('password')}
                      accessoryRight={renderIcon}
+                     secureTextEntry={secureTextEntry}
                    />
                 
                 </View>

@@ -19,3 +19,10 @@ export interface loginInput{
 export interface loginOutput{
     accessToken:string
 }
+
+export interface AddTodo{
+    title:string,
+    description: string,
+    time: string
+
+}

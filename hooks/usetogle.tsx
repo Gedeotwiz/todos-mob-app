@@ -19,6 +19,6 @@ export const UseTogleEye=()=>{
       />
     );
 
-    return {renderIcon}
+    return {secureTextEntry ,renderIcon}
 
 }

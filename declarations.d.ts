@@ -1,12 +1,20 @@
+// Image file types
 declare module "*.png";
 declare module "*.jpg";
 declare module "*.jpeg";
-declare module "*.svg";
 
+// React Native SVG support
+declare module "*.svg" {
+  import * as React from "react";
+  import { SvgProps } from "react-native-svg";
+  const content: React.FC<SvgProps>;
+  export default content;
+}
 
+// react-native-phone-number-input
 declare module "react-native-phone-number-input" {
   import * as React from "react";
-    import { StyleProp, TextStyle, ViewStyle } from "react-native";
+  import { StyleProp, TextStyle, ViewStyle } from "react-native";
 
   export interface PhoneInputProps {
     defaultCode?: string;

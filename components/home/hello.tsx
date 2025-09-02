@@ -4,6 +4,7 @@ import notify from "../../assets/icon/notif.png";
 import misnotify from "../../assets/icon/notnotf.png";
 import menu from "../../assets/icon/option.png";
 import image from "../../assets/images/profile.jpeg";
+import { useUserLogedInQuery } from "../rtk/auth/api.slice";
 
 
 export default function Hello(){
@@ -20,6 +21,9 @@ export default function Hello(){
     greeting = "Good evening 👋";
   }
 
+  const { data, isLoading} = useUserLogedInQuery();
+
+  const name = data?.payload?.names
 
      
     return (
@@ -28,7 +32,7 @@ export default function Hello(){
               <Image source={image} className="w-12 h-12 rounded-full"/>
              <View>
                 <Text >{greeting}</Text>
-                <Text className="font-bold">Twizerimana Gedeon </Text>
+                <Text className="font-bold">{name || isLoading}</Text>
              </View>
           </View>
           <View className="flex flex-row gap-2 justify-center items-center">

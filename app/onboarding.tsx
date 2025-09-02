@@ -9,7 +9,7 @@ export default function Onboarding() {
   return (
     <View className="flex flex-col justify-center items-center gap-8 h-full">
       <Text className="font-bold text-3xl">Welcome to the App 👋</Text>
-      <ContinueButton name="Continue" onPress={() => router.replace("./auth/login)")}/>
+      <ContinueButton name="Continue" onPress={() => router.replace("./auth/login")}/>
     </View>
   );
 }

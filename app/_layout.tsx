@@ -24,7 +24,6 @@ export default function RootLayout() {
 
   return (
     <>
-    
      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <ApplicationProvider {...eva} theme={eva.light}>
       <Provider store={store}>
