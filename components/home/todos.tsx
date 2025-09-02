@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import TodosCard from "./todo-card";
 
 interface IProps{
@@ -14,7 +14,19 @@ export default function HomeTodos(props:IProps){
             <Text className="font-semibold text-blue-600" onPress={props.onPress}>All Todos</Text>
         </View>
         <View className="bg-gray-200 rounded-lg px-4 h-full py-5">
-            <TodosCard/>
+           <ScrollView
+                showsVerticalScrollIndicator={true}
+                contentContainerStyle={{ gap: 8, paddingVertical: 5 }}
+              >
+              <TodosCard/>
+              <TodosCard/>
+              <TodosCard/>
+              <TodosCard/>
+              <TodosCard/>
+              <TodosCard/>
+              <TodosCard/>
+            </ScrollView>
+            
         </View>
      </View>
    )

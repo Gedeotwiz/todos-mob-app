@@ -42,8 +42,12 @@ export const authApi = createApi({
           method:"POST",
           body:DTO
         })
+    }),
+
+    getTodos:builder.query<any,void>({
+         query:()=>'todos'   
     })
   }),
 });
 
-export const {useSignUpMutation, useLoginMutation ,useUserLogedInQuery,useAddTodosMutation} = authApi;
+export const {useSignUpMutation, useLoginMutation ,useUserLogedInQuery,useAddTodosMutation,useGetTodosQuery} = authApi;
