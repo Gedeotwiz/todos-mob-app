@@ -2,7 +2,6 @@
 import { UseTogleEye } from '@/hooks/usetogle';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Input } from '@ui-kitten/components';
-import { useRouter } from "expo-router";
 import { Formik } from 'formik';
 import { useState } from 'react';
 import { Alert, Text, View } from 'react-native';
@@ -22,7 +21,6 @@ interface IProps {
 }
 
 export default function LoginForm(Props:IProps) {
-     const router = useRouter();
       const [keepSignedIn, setKeepSignedIn] = useState(false); 
 
 

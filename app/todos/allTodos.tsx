@@ -1,11 +1,22 @@
 import { SearchInput } from "@/components/__ui__/searchInput"
 import TodosCard from "@/components/home/todo-card"
+import { useGetTodosQuery } from "@/components/rtk/auth/api.slice"
+import { TodoResponse } from "@/components/rtk/types/integration.type"
 import { useRouter } from "expo-router"
-import { Image, Text, TouchableOpacity, View } from "react-native"
+import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native"
 import back from "../../assets/icon/back.png"
+
 
 export default function AllTodos(){
     const router = useRouter()
+    
+
+    const { data} = useGetTodosQuery({} as any);
+
+
+     const rawTodos = data?.payload?.data ?? []
+     const todos = [...rawTodos]
+
 
     return (
        <View className="flex flex-col h-full py-10 px-4 gap-6">
@@ -27,9 +38,26 @@ export default function AllTodos(){
             <View>
                 <SearchInput/>
             </View>
-            <View className="flex-1">
+            <View className="flex-1 h-full">
                 <Text className="text-lg font-bold pb-2">All Todos Here!</Text>
-                <TodosCard/>
+                 <ScrollView
+                    showsVerticalScrollIndicator={true}
+                    contentContainerStyle={{ gap: 8, paddingVertical: 5 }}
+
+                >
+                 {todos.reverse().map((todo: TodoResponse, index: number) => {
+                             return (
+                               <TodosCard
+                                 key={todo.id}
+                                 id={todo.id}
+                                 title={todo.title}
+                                 description={todo.description}
+                                 index={index}
+                               />
+                             );
+                           })}
+                </ScrollView>
+                
             </View>
        </View>
     )

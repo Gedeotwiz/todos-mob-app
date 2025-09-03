@@ -1,12 +1,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { AddTodo, CreateUserInput, IAPIResponse, loginInput, loginOutput } from '../types/integration.type';
+import { TodoStatus } from '../types/enum';
+import { AddTodo, CreateUserInput, FetchTodos, GetTodosApiResponse, IAPIResponse, loginInput, loginOutput } from '../types/integration.type';
 
 
 export const authApi = createApi({
   reducerPath: 'authApi', 
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://775a696cc637.ngrok-free.app/api/v1',
+    baseUrl: 'https://01ecf53860e8.ngrok-free.app/api/v1',
     prepareHeaders: async (headers) => {
       const token = await AsyncStorage.getItem('token');
       if (token) {
@@ -15,6 +16,7 @@ export const authApi = createApi({
       return headers;
     },
   }),
+  tagTypes: ['GET_TODO'],
   endpoints: (builder) => ({
     signUp: builder.mutation<IAPIResponse<null>, CreateUserInput>({
       query: (body) => ({
@@ -41,13 +43,31 @@ export const authApi = createApi({
           url:'todos',
           method:"POST",
           body:DTO
-        })
+        }),
+        invalidatesTags: [{ type: 'GET_TODO', id: 'LIST' }],
     }),
 
-    getTodos:builder.query<any,void>({
-         query:()=>'todos'   
-    })
+   getTodos: builder.query<GetTodosApiResponse, FetchTodos | void>({
+  query: (args) => {
+    const params = {
+      page: args?.page ?? 1,
+      size: args?.size ?? 5,
+      q: args?.q ?? "",
+    };
+    return { url: "todos", method: "GET", params };
+  },
+  providesTags: [{ type: "GET_TODO", id: "LIST" }],
+}),
+
+getTodosByStatus: builder.query<GetTodosApiResponse, { status: TodoStatus }>({
+  query: ({ status }) => ({
+    url: `todos/status/${status}`,
+    method: "GET",
+  }),
+  providesTags: [{ type: "GET_TODO", id: "LIST" }],
+}),
+
   }),
 });
 
-export const {useSignUpMutation, useLoginMutation ,useUserLogedInQuery,useAddTodosMutation,useGetTodosQuery} = authApi;
+export const {useSignUpMutation, useLoginMutation ,useUserLogedInQuery,useAddTodosMutation,useGetTodosQuery,useGetTodosByStatusQuery} = authApi;

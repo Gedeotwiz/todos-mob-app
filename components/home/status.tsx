@@ -1,12 +1,26 @@
 import { Text, View } from "react-native";
+import { useGetTodosByStatusQuery } from "../rtk/auth/api.slice";
+import { TodoStatus } from "../rtk/types/enum";
 
+interface IProps{
+    onPress:() => void
+}
 
-export default function TodosStatus(){
+export default function TodosStatus(props:IProps){
+
+    const {data:onTrack} = useGetTodosByStatusQuery({status:TodoStatus.ON_TRACK})
+    const {data:offTack} = useGetTodosByStatusQuery({status:TodoStatus.OFF_TRACK})
+    const {data:done} = useGetTodosByStatusQuery({status:TodoStatus.DONE})
+
+    const numberOnTrack = onTrack?.payload.data.length || 0
+    const numberDone = done?.payload.data.length || 0
+    const numberOffTrack = offTack?.payload.data.length || 0
+
 
     const track = [
-        {"name":"ON_TRACK","number":5},
-        {"name":"DONE","number":10},
-        {"name":"OFF_TRACK","number":3}
+        {"name":"ON_TRACK","number":numberOnTrack},
+        {"name":"DONE","number":numberDone},
+        {"name":"OFF_TRACK","number":numberOffTrack}
     ]
        const getBoderColor = (statusName:string) =>{
             switch(statusName){
@@ -23,15 +37,15 @@ export default function TodosStatus(){
     return (
       <View className="flex flex-col gap-4 px-4">
         <Text className="font-bold text-sl">Todos Status</Text>
-         <View className="flex flex-row justify-between items-center">
+         <View className="flex flex-row justify-between">
             {track.map((status,index) =>(
                <View key={index} className="flex flex-col justify-center items-center gap-1">
                  <Text className={`border px-2 py-1 rounded-lg ${getBoderColor(status.name)}`}>{status.name}</Text>
                  <Text>{status.number}</Text>
               </View>
             ))}
-          
+            <Text className="px-2 py-1 rounded-lg border boder-gray-600 h-8" onPress={props.onPress}>Add New</Text>
         </View>
       </View>
     )
-}
+} 

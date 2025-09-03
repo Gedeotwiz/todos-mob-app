@@ -1,3 +1,6 @@
+import { TodoStatus } from "./enum"
+
+
 export interface CreateUserInput{
     names:string,
     email:string,
@@ -25,4 +28,28 @@ export interface AddTodo{
     description: string,
     time: string
 
+}
+
+export interface FetchTodos{
+    page?:number,
+    size?:number,
+    q?:string,
+    id?:string
+}
+
+export interface TodoResponse {
+  id: string;
+  title: string;
+  description: string;
+  time?: string;
+  status: TodoStatus; 
+  userId?: string;
+}
+
+export interface GetTodosApiResponse {
+  message: string;
+  payload: {
+    data: TodoResponse[];
+    total?: number;
+  };
 }

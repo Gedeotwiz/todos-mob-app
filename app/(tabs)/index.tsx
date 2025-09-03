@@ -15,7 +15,7 @@ export default function HomeScreen() {
             <SearchInput/>
          </View>
         <Wellcome/>
-        <TodosStatus/>
+        <TodosStatus onPress={()=>router.push("../todos/addTodos")}/>
         <HomeTodos onPress={()=>router.push("../todos/allTodos")}/>
      </View>
   );
