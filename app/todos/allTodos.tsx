@@ -53,6 +53,16 @@ export default function AllTodos(){
                                  title={todo.title}
                                  summary={todo.summary}
                                  index={index}
+                                 click={()=>router.push({
+                                   pathname:"./TodoDetail",
+                                   params:{
+                                     id:String(todo.id),
+                                     title:todo.title,
+                                     summary:todo.summary,
+                                     description:todo.description,
+                                     time:todo.time
+                                   }
+                                 })}
                                />
                              );
                            })}

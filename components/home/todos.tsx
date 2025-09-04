@@ -4,7 +4,8 @@ import { TodoResponse } from "../rtk/types/integration.type";
 import TodosCard from "./todo-card";
 
 interface IProps {
-  onPress?: () => void;
+  onPress: () => void;
+  click:()=>void
 }
 
 export default function HomeTodos(props: IProps) {
@@ -32,6 +33,7 @@ export default function HomeTodos(props: IProps) {
                 title={todo.title}
                 summary={todo.summary}
                 index={index}
+                click={props.click}
               />
             );
           })}
