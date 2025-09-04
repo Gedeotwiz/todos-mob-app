@@ -9,7 +9,7 @@ import back from "../../assets/icon/back.png";
 export default function TodosTime(){
     const router = useRouter();
     const params = useGlobalSearchParams();
-    const { title, description } = params as { title: string, description: string };
+    const { title,summary, description } = params as { title: string, summary:string, description: string };
     const [date, setDate] = useState(new Date());
     const [AddTodo,{isLoading}] = useAddTodosMutation();
 
@@ -19,15 +19,14 @@ export default function TodosTime(){
     year: "numeric"
     });
 
-
     const handleSubmit = async () => {
-        if (!title || !description || !date) {
+        if (!title || !description || !date || !summary) {
             Alert.alert("Error", "All fields are required");
             return;
         }
 
         const time = formattedDate
-        const DTO = { title, description, time }
+        const DTO = { title,summary, description, time }
         try {
             const res = await AddTodo(DTO).unwrap();
             Alert.alert("Success", "Todo added successfully");

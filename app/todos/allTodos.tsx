@@ -51,7 +51,7 @@ export default function AllTodos(){
                                  key={todo.id}
                                  id={todo.id}
                                  title={todo.title}
-                                 description={todo.description}
+                                 summary={todo.summary}
                                  index={index}
                                />
                              );

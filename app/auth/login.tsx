@@ -37,9 +37,7 @@ export default function Login() {
           },
             }
           ])
-        } else {
-          router.replace("../(tabs)") 
-        }
+        } 
       } catch (err) {
         console.error("Token check failed", err)
         await AsyncStorage.removeItem("token")

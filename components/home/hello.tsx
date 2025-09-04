@@ -1,13 +1,17 @@
 import { useState } from "react";
-import { Image, Text, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import notify from "../../assets/icon/notif.png";
 import misnotify from "../../assets/icon/notnotf.png";
 import menu from "../../assets/icon/option.png";
-import image from "../../assets/images/profile.jpeg";
+// import image from "../../assets/images/profile.jpeg";
 import { useUserLogedInQuery } from "../rtk/auth/api.slice";
 
+interface IProps{
+   onPress:() => void
+}
 
-export default function Hello(){
+
+export default function Hello(props:IProps){
      const [notification]= useState(null)
 
      const hour = new Date().getHours();
@@ -24,12 +28,16 @@ export default function Hello(){
   const { data, isLoading} = useUserLogedInQuery();
 
   const name = data?.payload?.names
+  const image = data?.payload?.image
 
      
     return (
         <View className="flex flex-row justify-between items-center pt-5 px-4">
           <View className="flex flex-row justify-center items-start gap-4">
-              <Image source={image} className="w-12 h-12 rounded-full"/>
+              <Image
+              source={image ? { uri: image } : require("../../assets/images/profile.jpeg")}
+              className="w-12 h-12 rounded-full"
+             />
              <View>
                 <Text >{greeting}</Text>
                 <Text className="font-bold">{name || isLoading}</Text>
@@ -37,9 +45,9 @@ export default function Hello(){
           </View>
           <View className="flex flex-row gap-2 justify-center items-center">
              <Image source={notification ? notify : misnotify} className="w-6 h-6"/>
-             <View className="border border-gray-400 rounded-full p-1">
+             <TouchableOpacity className="border border-gray-400 rounded-full p-1" onPress={props.onPress}>
                 <Image source={menu} className="w-5 h-5"/>
-             </View>
+             </TouchableOpacity>
           </View>
        </View>
     )

@@ -25,6 +25,7 @@ export interface loginOutput{
 
 export interface AddTodo{
     title:string,
+    summary:string,
     description: string,
     time: string
 
@@ -40,6 +41,7 @@ export interface FetchTodos{
 export interface TodoResponse {
   id: string;
   title: string;
+  summary:string;
   description: string;
   time?: string;
   status: TodoStatus; 

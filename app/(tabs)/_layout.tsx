@@ -1,45 +1,42 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
-
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { settingIcon, timeIcon, todoIcon, userIcon } from '@/components/ui/IconTabs';
+import { BottomNavigation, BottomNavigationTab } from '@ui-kitten/components';
+import { Href, Slot, usePathname, useRouter } from 'expo-router';
+import React, { useEffect, useState } from 'react';
+import { SafeAreaView, View } from 'react-native';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
+  const router = useRouter();
+  const pathname = usePathname();
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const routes: Href[] = ["/", "/Todos", "/Time", "/Setting"];
+
+  useEffect(() => {
+    const index = routes.findIndex((r) => pathname === r);
+    if (index !== -1) {
+      setSelectedIndex(index);
+    }
+  }, [pathname]);
 
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effec
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={20} name="house.fill" color={color} />,
+    <SafeAreaView className='flex-1 bg-white pb-10'>
+      <View className='flex-1'>
+        <Slot />
+      </View>
+
+      <BottomNavigation
+        appearance="noIndicator"
+        selectedIndex={selectedIndex}
+        onSelect={(index) => {
+          setSelectedIndex(index);
+          router.push(routes[index]);
         }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Setting',
-          tabBarIcon: ({ color }) => <IconSymbol size={20} name="paperplane.fill" color={color} />,
-        }}
-      />
-    </Tabs>
+      >
+        <BottomNavigationTab icon={userIcon} title="User" />
+        <BottomNavigationTab icon={todoIcon} title="Todos" />
+        <BottomNavigationTab icon={timeIcon} title="Time" />
+        <BottomNavigationTab icon={settingIcon} title="Setting" />
+      </BottomNavigation>
+    </SafeAreaView>
   );
 }

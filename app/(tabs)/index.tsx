@@ -10,7 +10,7 @@ export default function HomeScreen() {
    const router = useRouter()
   return (
      <View className="py-10 h-full bg-white flex flex-col gap-6">
-        <Hello/>
+        <Hello onPress={()=>router.push("../auth/login")}/>
          <View className="px-4">
             <SearchInput/>
          </View>

@@ -6,7 +6,7 @@ import back from "../../assets/icon/back.png"
 export default function AddNewTodo () {
     const router = useRouter()
 
-    const handleNext = (todoData: { title: string, description: string }) => {
+    const handleNext = (todoData: { title: string,summary:string, description: string }) => {
         router.push({
             pathname: './todoTime',
             params: todoData,
