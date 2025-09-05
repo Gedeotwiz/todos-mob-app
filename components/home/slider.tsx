@@ -4,7 +4,6 @@ import { FlatList, Image, View } from "react-native";
 
 const images = [
   require("../../assets/icon/profile-re.png"),
-  require("../../assets/icon/pock.png"),
   require("../../assets/icon/WhatsApp.png"),
 ];
 

@@ -43,7 +43,7 @@ export interface TodoResponse {
   title: string;
   summary:string;
   description: string;
-  time?: string;
+  time: string;
   status: TodoStatus; 
   userId?: string;
 }

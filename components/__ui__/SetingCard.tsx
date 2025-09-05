@@ -12,10 +12,10 @@ interface IProps {
 
 export const SettingCard = (props:IProps) => {
     return (
-      <View className="flex flex-row justify-between items-center border-b border-slate-200">
+      <View className="flex flex-row justify-between items-center border-b border-slate-200 pb-4">
          <View className="flex flex-row justify-center items-center gap-2">
             <MaterialIcons name={props.name} size={24} color='#0EA5E9'/>
-            <Text></Text>
+            <Text>{props.title}</Text>
          </View>
          <MaterialIcons name={props.icon} size={16} color='gray'/>
       </View>

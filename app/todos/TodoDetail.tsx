@@ -10,7 +10,7 @@ export default function TodoDetails(){
     const { id, title, summary, description ,time} = useLocalSearchParams()
     return (
        <View className="h-full py-10 px-10 bg-white flex flex-col gap-10">
-        <TouchableOpacity className="py-5 flex flex-row justify-start items-center gap-1" onPress={() => router.back()}>
+        <TouchableOpacity className="py-5 flex flex-row justify-start items-center gap-2" onPress={() => router.back()}>
           <Image source={back} className="w-10 h-10" />
           <Text className="text-lg font-bold">Todo Details</Text>
         </TouchableOpacity>

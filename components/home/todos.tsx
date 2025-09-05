@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router";
 import { ScrollView, Text, View } from "react-native";
 import { useGetTodosQuery } from "../rtk/auth/api.slice";
 import { TodoResponse } from "../rtk/types/integration.type";
@@ -5,7 +6,6 @@ import TodosCard from "./todo-card";
 
 interface IProps {
   onPress: () => void;
-  click:()=>void
 }
 
 export default function HomeTodos(props: IProps) {
@@ -13,6 +13,8 @@ export default function HomeTodos(props: IProps) {
   
   const rawTodos = data?.payload?.data ?? []
   const todos = [...rawTodos].slice(-2)
+
+  const router = useRouter()
 
   return (
     <View>
@@ -23,7 +25,7 @@ export default function HomeTodos(props: IProps) {
         </Text>
       </View>
 
-      <View className="bg-gray-200 rounded-lg px-4 h-full pb-36">
+      <View className=" px-4 h-full pb-36">
         <ScrollView showsVerticalScrollIndicator={true} contentContainerStyle={{ gap: 8, paddingVertical: 5 }}>
           {todos.reverse().map((todo: TodoResponse, index: number) => {
             return (
@@ -32,8 +34,20 @@ export default function HomeTodos(props: IProps) {
                 id={todo.id}
                 title={todo.title}
                 summary={todo.summary}
+                time={todo.time}
                 index={index}
-                click={props.click}
+                click={() =>
+                  router.push({
+                    pathname: "/todos/TodoDetail",
+                    params: {
+                      id: String(todo.id),
+                      title: todo.title,
+                      summary: todo.summary,
+                      description: todo.description,
+                      time: todo.time,
+                    },
+                  })
+                }
               />
             );
           })}
