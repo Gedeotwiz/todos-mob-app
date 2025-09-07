@@ -64,7 +64,7 @@ export default function Login() {
       </TouchableOpacity>
 
       <View className="flex flex-row justify-center items-center pb-10">
-        <Text className="font-bold text-3xl">Login</Text>
+        <Text className="text-3xl font-poppins-bold">Login</Text>
       </View>
 
       <GoagleButton name="Sign in with Goagle" icon={goagle} />
@@ -78,7 +78,7 @@ export default function Login() {
       </View>
 
       <View className="flex flex-row justify-center items-center gap-2 pb-10 pt-5">
-        <Text>Don't have an Account?</Text>
+        <Text className="font-poppins">Don't have an Account?</Text>
         <Text
           className="text-blue-600"
           onPress={() => router.replace("./signup")}

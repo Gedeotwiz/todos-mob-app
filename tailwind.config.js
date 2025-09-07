@@ -4,7 +4,14 @@ module.exports = {
   content: ["./app/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
   presets: [require("nativewind/preset")],
   theme: {
-    extend: {},
+    extend: {
+       fontFamily: {
+        poppins: ["Poppins", "sans-serif"],
+        "poppins-bold": ["Poppins-Bold", "sans-serif"],
+        "poppins-medium": ["Poppins-Medium", "sans-serif"],
+        "poppins-semBold": ["Poppins-SemiBold", "sans-serif"],
+      },
+    },
   },
   plugins: [],
 }

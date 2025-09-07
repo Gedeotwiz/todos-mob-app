@@ -19,7 +19,7 @@ export default function TodosScreen() {
     <View className="flex-1 py-10 px-5">
       <TouchableOpacity className="py-5 flex flex-row justify-between items-center w-2/3 pr-5" onPress={() => router.back()}>
           <Image source={back} className="w-10 h-10" />
-          <Text className="text-xl font-bold">Todos List</Text>
+          <Text className="text-xl font-poppins-medium">Todos List</Text>
       </TouchableOpacity>
       
     < Tab.Navigator

@@ -24,7 +24,7 @@ export default function AddNewTodo () {
                        }}>
                 <Image source={back}  className="w-10 h-10" />
             </TouchableOpacity>
-            <Text className="text-xl font-bold">Add new todo you propose to work</Text>
+            <Text className="text-xl font-poppins-bold">Add new todo you propose to work</Text>
             <View>
               <AddTodoForm onPress={handleNext}/>
             </View>

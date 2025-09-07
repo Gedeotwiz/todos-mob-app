@@ -40,7 +40,7 @@ export default function TabTwoScreen() {
     <View className=" h-full py-10 px-4 flex flex-col gap-10">
       <TouchableOpacity className="py-5 flex flex-row justify-between items-center gap-1 w-2/3 pr-8" onPress={() => router.back()}>
          <Image source={back} className="w-10 h-10" />
-          <Text className="text-lg font-bold">Settings</Text>
+          <Text className="text-lg font-poppins-bold">Settings</Text>
       </TouchableOpacity>
       <View className="flex flex-col gap-4 justify-center h-1/2">
          {setting.map((set,index)=>(
@@ -50,7 +50,7 @@ export default function TabTwoScreen() {
       <View className="flex flex-col justify-center items-center">
        <TouchableOpacity className="flex flex-row justify-center items-center bg-slate-200 w-2/3 rounded-3xl py-2" onPress={handleLogout}>
          <MaterialIcons name="logout" size={24} color='red'/>
-         <Text className="text-red-500">Logout</Text>
+         <Text className="text-red-500 font-poppins-medium">Logout</Text>
        </TouchableOpacity>
        </View>
      </View>

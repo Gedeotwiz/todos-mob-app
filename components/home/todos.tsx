@@ -19,8 +19,8 @@ export default function HomeTodos(props: IProps) {
   return (
     <View>
       <View className="flex flex-row justify-between items-center px-4 pb-3">
-        <Text className="font-semibold">New Todos</Text>
-        <Text className="font-semibold text-blue-600" onPress={props.onPress}>
+        <Text className="font-poppins-medium">New Todos</Text>
+        <Text className="font-poppins-medium text-blue-600" onPress={props.onPress}>
           All Todos
         </Text>
       </View>

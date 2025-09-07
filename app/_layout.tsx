@@ -1,6 +1,5 @@
 import { store } from '@/components/rtk/_store_/store';
 import * as eva from '@eva-design/eva';
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { ApplicationProvider } from '@ui-kitten/components';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
@@ -9,12 +8,12 @@ import { Provider } from 'react-redux';
 import "../global.css";
 
 
-import { useColorScheme } from '@/hooks/useColorScheme';
-
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
   const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    "Poppins": require("../assets/fonts/Poppins/Poppins-Regular.ttf"),
+    "Poppins-Bold": require("../assets/fonts/Poppins/Poppins-Bold.ttf"),
+    "Poppins-Medium": require("../assets/fonts/Poppins/Poppins-Medium.ttf"),
+    "Poppins-SemBold": require("../assets/fonts/Poppins/Poppins-SemiBold.ttf"),
   });
 
   if (!loaded) {
@@ -24,7 +23,7 @@ export default function RootLayout() {
 
   return (
     <>
-     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+     
       <ApplicationProvider {...eva} theme={eva.light}>
       <Provider store={store}>
       <Stack screenOptions={{ headerShown: false }}>
@@ -34,7 +33,6 @@ export default function RootLayout() {
       </Stack>
       </Provider>
       </ApplicationProvider>
-    </ThemeProvider>
     </>
   );
 }

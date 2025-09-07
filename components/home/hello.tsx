@@ -38,8 +38,8 @@ export default function Hello(props:IProps){
               className="w-12 h-12 rounded-full"
              />
              <View>
-                <Text >{greeting}</Text>
-                <Text className="font-bold">{name || isLoading}</Text>
+                <Text className="font-poppins">{greeting}</Text>
+                <Text className="font-poppins-bold">{name || isLoading}</Text>
              </View>
           </View>
           <View className="flex flex-row gap-2 justify-center items-center">
