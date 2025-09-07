@@ -15,7 +15,7 @@ export default function FormButton({ name, onPress, disabled }: IProps) {
         disabled ? 'bg-gray-400' : 'bg-blue-600'
       }`}
     >
-      <Text className={`text-white font-bold`}>{name}</Text>
+      <Text className={`text-white font-poppins-bold`}>{name}</Text>
     </TouchableOpacity>
   );
 }

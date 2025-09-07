@@ -14,7 +14,7 @@ export default function PhoneNumberInput({ onChangeFormatted }: Props) {
 
   return (
     <View className="py-3">
-      <Text className="mb-2 font-medium">Phone Number</Text>
+      <Text className="mb-2 text-gray-400">Phone Number</Text>
 
       <PhoneInput
         ref={phoneInput}

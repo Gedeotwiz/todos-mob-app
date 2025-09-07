@@ -13,8 +13,8 @@ export default function ForgotPassword(){
            <Image source={back} className="w-10 h-10" />
           </TouchableOpacity>
           <View>
-            <Text className="font-semibold text-2xl py-5">Forgot Password</Text>
-            <Text>Enter the email address registered with your account. We'll send you a link to reset your password.</Text>
+            <Text className="font-poppins-bold text-2xl py-5">Forgot Password</Text>
+            <Text className="font-poppins">Enter the email address registered with your account. We'll send you a link to reset your password.</Text>
           </View>
           <View>
              <ForgotForm onPress={()=>router.push("./resentPassword")}/>

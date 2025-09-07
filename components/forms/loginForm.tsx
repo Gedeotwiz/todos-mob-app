@@ -80,7 +80,7 @@ export default function LoginForm(Props:IProps) {
 
              <View>
             <View className='flex flex-row justify-end items-end'>
-                <Text className='text-blue-600' onPress={Props.onPress}>Forgot Password</Text>
+                <Text className='text-blue-600 font-poppins' onPress={Props.onPress}>Forgot Password</Text>
             </View>
               <Input 
                 value={values.password}

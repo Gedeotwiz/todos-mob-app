@@ -9,13 +9,13 @@ interface IProps {
 
 export default function CheckBoxExample({ label, value, onChange }: IProps) {
   return (
-    <View className="flex-row gap-2 p-4">
+    <View className="flex-row gap-2">
       <Checkbox
         value={value}
         onValueChange={onChange}
         color={value ? "#2563EB" : undefined}
       />
-      <Text>{label}</Text>
+      <Text className="font-poppins">{label}</Text>
     </View>
   );
 }

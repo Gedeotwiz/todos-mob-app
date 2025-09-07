@@ -55,3 +55,10 @@ export interface GetTodosApiResponse {
     total?: number;
   };
 }
+
+export interface UpdateTodos {
+   title: string,
+   summary: string,
+   description: string,
+   status: string
+}

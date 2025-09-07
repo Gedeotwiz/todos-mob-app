@@ -80,7 +80,7 @@ export default function Login() {
       <View className="flex flex-row justify-center items-center gap-2 pb-10 pt-5">
         <Text className="font-poppins">Don't have an Account?</Text>
         <Text
-          className="text-blue-600"
+          className="text-blue-600 font-poppins"
           onPress={() => router.replace("./signup")}
         >
           Sign up here
