@@ -1,5 +1,5 @@
-import FormButton from '@/components/forms/formButton';
-import { useAddTodosMutation } from '@/components/rtk/auth/api.slice';
+import FormButton from '@/components/forms/FormButton';
+import { useAddTodosMutation } from '@/components/Redux/auth/api.slice';
 import GLinearGradient from '@/components/ui/GGradient';
 import { Calendar } from '@ui-kitten/components';
 import { useGlobalSearchParams, useRouter } from "expo-router";
@@ -32,7 +32,7 @@ export default function TodosTime(){
             const res = await AddTodo(DTO).unwrap();
             Alert.alert("Success", "Todo added successfully");
             console.log("✅ Response:", res);
-            router.push("./allTodos"); 
+            router.push("../(tabs)/Todos"); 
         } catch (error: any) {
             console.log("Error object:", error);
             console.log("Error stringified:", JSON.stringify(error, null, 2));
@@ -49,7 +49,7 @@ export default function TodosTime(){
         </TouchableOpacity>
         <View className='flex flex-col gap-6'>
              <Text className="text-xl font-bold text-white">Choose todo deadline</Text>
-             <Calendar date={date} onSelect={nextDate => setDate(nextDate)} />
+             <Calendar date={date} onSelect={nextDate => setDate(nextDate)} className='bg-white'/>
              <FormButton name='Submit' onPress={handleSubmit} disabled={isLoading}/>
          </View>
       </View>

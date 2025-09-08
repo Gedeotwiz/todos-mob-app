@@ -1,9 +1,9 @@
 import { useRouter } from "expo-router";
 import { ScrollView, Text, View } from "react-native";
-import TodosCard from "../home/todo-card";
-import { useGetTodosByStatusQuery } from "../rtk/auth/api.slice";
-import { TodoStatus } from "../rtk/types/enum";
-import { TodoResponse } from "../rtk/types/integration.type";
+import TodosCard from "../home/Todo-card";
+import { useGetTodosByStatusQuery } from "../Redux/auth/api.slice";
+import { TodoStatus } from "../Redux/types/enum";
+import { TodoResponse } from "../Redux/types/integration.type";
 import GLinearGradient from "../ui/GGradient";
 
 export default function OnTrackTodos() {

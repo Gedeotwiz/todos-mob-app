@@ -1,8 +1,8 @@
 import { useRouter } from "expo-router";
 import { Formik } from 'formik';
 import { Text, View } from "react-native";
-import OtpInputField from "../__ui__/otpCode";
-import FormButton from "./formButton";
+import OtpInputField from "../__ui__/OtpCode";
+import FormButton from "./FormButton";
 
 interface ResentFormValue{
     code:string

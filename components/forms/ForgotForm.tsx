@@ -2,7 +2,7 @@
 import { Input } from '@ui-kitten/components';
 import { Formik } from 'formik';
 import { Text, View } from "react-native";
-import FormButton from "./formButton";
+import FormButton from "./FormButton";
 
 interface ForgotFormValue{
     email:string

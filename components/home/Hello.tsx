@@ -3,7 +3,7 @@ import { Image, Text, TouchableOpacity, View } from "react-native";
 import notify from "../../assets/icon/notif.png";
 import misnotify from "../../assets/icon/notnotf.png";
 import menu from "../../assets/icon/option.png";
-import { useUserLogedInQuery } from "../rtk/auth/api.slice";
+import { useUserLogedInQuery } from "../Redux/auth/api.slice";
 
 interface IProps{
    onPress:() => void

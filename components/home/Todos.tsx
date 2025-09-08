@@ -1,8 +1,8 @@
 import { useRouter } from "expo-router";
 import { ScrollView, Text, View } from "react-native";
-import { useGetTodosQuery } from "../rtk/auth/api.slice";
-import { TodoResponse } from "../rtk/types/integration.type";
-import TodosCard from "./todo-card";
+import { useGetTodosQuery } from "../Redux/auth/api.slice";
+import { TodoResponse } from "../Redux/types/integration.type";
+import TodosCard from "./Todo-card";
 
 interface IProps {
   onPress: () => void;

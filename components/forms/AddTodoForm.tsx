@@ -1,7 +1,7 @@
 import { Input } from "@ui-kitten/components";
 import { Formik } from "formik";
 import { View } from "react-native";
-import FormButton from "./formButton";
+import FormButton from "./FormButton";
 
 
 

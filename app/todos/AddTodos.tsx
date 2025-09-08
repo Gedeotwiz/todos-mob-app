@@ -1,4 +1,4 @@
-import AddTodoForm from "@/components/forms/addTodoForm"
+import AddTodoForm from "@/components/forms/AddTodoForm"
 import GLinearGradient from "@/components/ui/GGradient"
 import { useRouter } from "expo-router"
 import { Image, Text, TouchableOpacity, View } from "react-native"

@@ -1,5 +1,5 @@
 import { Text, View } from "react-native"
-import ImageSlider from "./slider"
+import ImageSlider from "./Slider"
 
 
 export default function Wellcome(){

@@ -1,6 +1,6 @@
-import DividerWithText from "@/components/__ui__/devidText"
-import GoagleButton from "@/components/__ui__/gogalButton"
-import LoginForm from "@/components/forms/loginForm"
+import DividerWithText from "@/components/__ui__/DevidText"
+import GoagleButton from "@/components/__ui__/GogalButton"
+import LoginForm from "@/components/forms/LoginForm"
 import GLinearGradient from "@/components/ui/GGradient"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import { useRouter } from "expo-router"
@@ -34,7 +34,7 @@ export default function Login() {
             {
               text:'OK',
               onPress: () => {
-           router.replace("/auth/login")
+           router.replace("/auth/Login")
           },
             }
           ])
@@ -74,7 +74,7 @@ export default function Login() {
 
       <View>
         <LoginForm
-          onPress={() => router.push("./forgotPassword")}
+          onPress={() => router.push("./ForgotPassword")}
           onLogin={() => router.push("../(tabs)")}
         />
       </View>
@@ -83,7 +83,7 @@ export default function Login() {
         <Text className="font-poppins text-white">Don't have an Account?</Text>
         <Text
           className="text-blue-600 font-poppins"
-          onPress={() => router.replace("./signup")}
+          onPress={() => router.replace("./Signup")}
         >
           Sign up here
         </Text>

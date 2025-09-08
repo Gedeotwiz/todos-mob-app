@@ -18,7 +18,7 @@ export default function Onboarding() {
         <Text className="font-poppins-medium text-lg text-white">You informations are </Text>
         <Text className="font-poppins-medium text-lg text-white">secure with us</Text>
       </View>
-      <TouchableOpacity onPress={() => router.replace("./auth/login")} className="p-5 bg-white rounded-full">
+      <TouchableOpacity onPress={() => router.replace("./auth/Login")} className="p-5 bg-white rounded-full">
          <MaterialIcons name="done" color='gray' size={26}/>
       </TouchableOpacity>
     </View>

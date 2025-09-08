@@ -1,6 +1,6 @@
-import DividerWithText from "@/components/__ui__/devidText"
-import GoagleButton from "@/components/__ui__/gogalButton"
-import SignUpForm from "@/components/forms/signupForm"
+import DividerWithText from "@/components/__ui__/DevidText"
+import GoagleButton from "@/components/__ui__/GogalButton"
+import SignUpForm from "@/components/forms/SignupForm"
 import GLinearGradient from "@/components/ui/GGradient"
 import { useRouter } from "expo-router"
 import { Image, Text, TouchableOpacity, View } from "react-native"
@@ -8,6 +8,7 @@ import back from "../../assets/icon/back.png"
 import goagle from "../../assets/icon/goagle.png"
 
 export default function SignUp(){
+    
     const router = useRouter()
     return (
         <GLinearGradient>
@@ -25,9 +26,10 @@ export default function SignUp(){
             </View>
             <View className='flex flex-row justify-center items-center gap-2 pt-7'>
                 <Text className="font-poppins text-white">Have an Account</Text>
-                <Text className='text-blue-600 font-poppins' onPress={() => router.replace("./login")}>Sign in here</Text>
+                <Text className='text-blue-600 font-poppins' onPress={() => router.replace("./Login")}>Sign in here</Text>
                 </View>
            </View>
+
            </GLinearGradient>
     )
 }

@@ -1,5 +1,5 @@
 import { DeleteCard, DoneCard, EditCard } from "@/components/__ui__/ActionCard"
-import { useDoneTodoUpdateMutation } from "@/components/rtk/auth/api.slice"
+import { useDoneTodoUpdateMutation } from "@/components/Redux/auth/api.slice"
 import GLinearGradient from "@/components/ui/GGradient"
 import { useLocalSearchParams, useRouter } from "expo-router"
 import { Alert, Image, Text, TouchableOpacity, View } from "react-native"

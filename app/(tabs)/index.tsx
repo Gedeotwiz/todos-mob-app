@@ -1,8 +1,8 @@
-import { SearchInput } from "@/components/__ui__/searchInput";
-import Hello from "@/components/home/hello";
-import TodosStatus from "@/components/home/status";
-import HomeTodos from "@/components/home/todos";
-import Wellcome from "@/components/home/wellcome";
+import { SearchInput } from "@/components/__ui__/SearchInput";
+import Hello from "@/components/home/Hello";
+import TodosStatus from "@/components/home/Status";
+import HomeTodos from "@/components/home/Todos";
+import Wellcome from "@/components/home/Wellcome";
 import GLinearGradient from "@/components/ui/GGradient";
 import { useRouter } from "expo-router";
 import { View } from "react-native";

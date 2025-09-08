@@ -3,11 +3,11 @@ import { Input } from '@ui-kitten/components';
 import { Formik } from 'formik';
 import { useState } from 'react';
 import { Alert, View } from "react-native";
-import CheckBoxExample from '../__ui__/checkbox';
-import { useSignUpMutation } from '../rtk/auth/api.slice';
-import { CreateUserInput } from '../rtk/types/integration.type';
-import FormButton from './formButton';
-import PhoneNumberInput from './phoneNumber';
+import CheckBoxExample from '../__ui__/Checkbox';
+import { useSignUpMutation } from '../Redux/auth/api.slice';
+import { CreateUserInput } from '../Redux/types/integration.type';
+import FormButton from './FormButton';
+import PhoneNumberInput from './PhoneNumber';
 
 
 

@@ -5,10 +5,10 @@ import { Input } from '@ui-kitten/components';
 import { Formik } from 'formik';
 import { useState } from 'react';
 import { Alert, Text, View } from 'react-native';
-import CheckBoxExample from '../__ui__/checkbox';
-import { useLoginMutation } from '../rtk/auth/api.slice';
-import { loginInput } from '../rtk/types/integration.type';
-import FormButton from './formButton';
+import CheckBoxExample from '../__ui__/Checkbox';
+import { useLoginMutation } from '../Redux/auth/api.slice';
+import { loginInput } from '../Redux/types/integration.type';
+import FormButton from './FormButton';
 
 
 

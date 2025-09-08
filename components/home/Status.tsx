@@ -1,6 +1,6 @@
 import { Text, View } from "react-native";
-import { useGetTodosByStatusQuery } from "../rtk/auth/api.slice";
-import { TodoStatus } from "../rtk/types/enum";
+import { useGetTodosByStatusQuery } from "../Redux/auth/api.slice";
+import { TodoStatus } from "../Redux/types/enum";
 
 interface IProps{
     onPress:() => void

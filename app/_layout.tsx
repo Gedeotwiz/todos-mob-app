@@ -1,4 +1,4 @@
-import { store } from '@/components/rtk/_store_/store';
+import { store } from '@/components/Redux/_store_/store';
 import * as eva from '@eva-design/eva';
 import { ApplicationProvider } from '@ui-kitten/components';
 import { useFonts } from 'expo-font';
