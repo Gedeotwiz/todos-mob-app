@@ -1,5 +1,5 @@
-import { OtpInput } from "react-native-otp-entry";
 import { Text, View } from "react-native";
+import { OtpInput } from "react-native-otp-entry";
 
 interface IProps {
   handleChange: (code: string) => void
@@ -9,7 +9,7 @@ interface IProps {
 export default function OtpInputField(props: IProps) {
   return (
     <View className="flex flex-col gap-3">
-      <Text className="font-bold">Enter Code</Text>
+      <Text className="font-poppins-bold text-white">Enter Code</Text>
       <OtpInput
         numberOfDigits={6}
         onTextChange={props.handleChange}

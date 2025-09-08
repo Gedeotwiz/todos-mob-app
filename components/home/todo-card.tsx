@@ -2,6 +2,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { Card } from "@ui-kitten/components";
 import { useState } from "react";
 import { Text, View } from "react-native";
+import { TodoStatus } from "../rtk/types/enum";
 
 interface IProps{
   id:string,
@@ -9,6 +10,7 @@ interface IProps{
   summary:string,
   time:string,
   index:number,
+  status:TodoStatus,
   click:()=>void
 }
 

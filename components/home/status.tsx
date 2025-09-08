@@ -36,15 +36,15 @@ export default function TodosStatus(props:IProps){
         }
     return (
       <View className="flex flex-col gap-4 px-4">
-        <Text className="font-poppins-bold text-sl">Todos Status</Text>
+        <Text className="font-poppins-bold text-white">Todos Status</Text>
          <View className="flex flex-row justify-between">
             {track.map((status,index) =>(
                <View key={index} className="flex flex-col justify-center items-center gap-1">
-                 <Text className={`border px-2 py-1 rounded-lg font-poppins ${getBoderColor(status.name)}`}>{status.name}</Text>
-                 <Text className="font-poppins-medium">{status.number}</Text>
+                 <Text className={`border px-2 py-1 rounded-lg font-poppins text-white ${getBoderColor(status.name)}`}>{status.name}</Text>
+                 <Text className="font-poppins-medium text-white">{status.number}</Text>
               </View>
             ))}
-            <Text className="px-2 py-1 rounded-lg border boder-gray-600 h-9 font-poppins-medium" onPress={props.onPress}>Add New</Text>
+            <Text className="px-2 py-1 rounded-lg border boder-gray-600 h-9 font-poppins-medium text-white" onPress={props.onPress}>Add New</Text>
         </View>
       </View>
     )

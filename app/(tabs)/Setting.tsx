@@ -1,4 +1,5 @@
 import { SettingCard } from "@/components/__ui__/SetingCard";
+import GLinearGradient from "@/components/ui/GGradient";
 import { MaterialIcons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
@@ -37,10 +38,11 @@ export default function TabTwoScreen() {
 
 
   return (
+    <GLinearGradient>
     <View className=" h-full py-10 px-4 flex flex-col gap-10">
       <TouchableOpacity className="py-5 flex flex-row justify-between items-center gap-1 w-2/3 pr-8" onPress={() => router.back()}>
          <Image source={back} className="w-10 h-10" />
-          <Text className="text-lg font-poppins-bold">Settings</Text>
+          <Text className="text-lg font-poppins-bold text-white">Settings</Text>
       </TouchableOpacity>
       <View className="flex flex-col gap-4 justify-center h-1/2">
          {setting.map((set,index)=>(
@@ -54,6 +56,7 @@ export default function TabTwoScreen() {
        </TouchableOpacity>
        </View>
      </View>
+     </GLinearGradient>
   );
 }
 

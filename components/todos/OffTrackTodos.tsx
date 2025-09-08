@@ -4,6 +4,7 @@ import TodosCard from "../home/todo-card";
 import { useGetTodosByStatusQuery } from "../rtk/auth/api.slice";
 import { TodoStatus } from "../rtk/types/enum";
 import { TodoResponse } from "../rtk/types/integration.type";
+import GLinearGradient from "../ui/GGradient";
 
 export default function OffTrackTodos() {
   const { data } = useGetTodosByStatusQuery({ status: TodoStatus.OFF_TRACK });
@@ -12,7 +13,8 @@ export default function OffTrackTodos() {
   const router = useRouter();
 
   return (
-    <View className="flex-1 bg-white">
+    <GLinearGradient>
+    <View className="flex-1">
       {todos.length === 0 ? (
         <View className="flex-1 justify-center items-center">
           <Text className="text-lg font-semibold text-gray-500">
@@ -34,6 +36,7 @@ export default function OffTrackTodos() {
                 summary={todo.summary}
                 time={todo.time}
                 index={index}
+                status={todo.status}
                 click={() =>
                   router.push({
                     pathname: "/todos/TodoDetail",
@@ -43,6 +46,7 @@ export default function OffTrackTodos() {
                       summary: todo.summary,
                       description: todo.description,
                       time: todo.time,
+                      status:todo.status
                     },
                   })
                 }
@@ -51,5 +55,6 @@ export default function OffTrackTodos() {
         </ScrollView>
       )}
     </View>
+    </GLinearGradient>
   );
 }

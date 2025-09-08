@@ -41,8 +41,8 @@ export default function ForgotForm(props:IProps){
                 )}
             </Formik>
             <View className="flex flex-row items-center justify-start gap-1">
-                <Text>Rembered password?</Text>
-                <Text className="text-blue-600" onPress={props.onPress}>Login to account</Text>
+                <Text className='text-white font-poppins'>Rembered password?</Text>
+                <Text className="text-blue-600 font-poppins" onPress={props.onPress}>Login to account</Text>
             </View>
         </View>
     )

@@ -1,5 +1,6 @@
 import FormButton from '@/components/forms/formButton';
 import { useAddTodosMutation } from '@/components/rtk/auth/api.slice';
+import GLinearGradient from '@/components/ui/GGradient';
 import { Calendar } from '@ui-kitten/components';
 import { useGlobalSearchParams, useRouter } from "expo-router";
 import { useState } from "react";
@@ -41,15 +42,17 @@ export default function TodosTime(){
     }
 
     return (
+        <GLinearGradient>
       <View className="flex flex-col py-10 px-4">
         <TouchableOpacity className="py-5" onPress={() => router.back()}>
             <Image source={back} className="w-10 h-10" />
         </TouchableOpacity>
         <View className='flex flex-col gap-6'>
-             <Text className="text-xl font-bold">Choose todo deadline</Text>
+             <Text className="text-xl font-bold text-white">Choose todo deadline</Text>
              <Calendar date={date} onSelect={nextDate => setDate(nextDate)} />
              <FormButton name='Submit' onPress={handleSubmit} disabled={isLoading}/>
          </View>
       </View>
+      </GLinearGradient>
     )
 }

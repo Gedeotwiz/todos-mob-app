@@ -19,12 +19,13 @@ export default function TabLayout() {
   }, [pathname]);
 
   return (
-    <SafeAreaView className='flex-1 bg-white pb-10'>
+    <SafeAreaView className='flex-1'>
       <View className='flex-1'>
         <Slot />
       </View>
 
       <BottomNavigation
+        style={{ backgroundColor: '#05243E',paddingBottom:46 }} 
         appearance="noIndicator"
         selectedIndex={selectedIndex}
         onSelect={(index) => {

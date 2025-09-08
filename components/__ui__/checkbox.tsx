@@ -15,7 +15,7 @@ export default function CheckBoxExample({ label, value, onChange }: IProps) {
         onValueChange={onChange}
         color={value ? "#2563EB" : undefined}
       />
-      <Text className="font-poppins">{label}</Text>
+      <Text className="font-poppins text-white">{label}</Text>
     </View>
   );
 }

@@ -35,9 +35,9 @@ export default function ResentForm(props:IProps){
                     
                 )}
             </Formik>
-            <View className="flex flex-row items-center justify-start gap-1">
-                <Text>Didn't see your email?</Text>
-                <Text className="text-blue-600" onPress={props.onPress}>Resend</Text>
+            <View className="flex flex-row items-center justify-start gap-2">
+                <Text className="text-white font-poppins">Didn't see your email?</Text>
+                <Text className="text-blue-600 font-poppins" onPress={props.onPress}>Resend</Text>
             </View>
         </View>
     )

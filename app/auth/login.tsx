@@ -1,6 +1,7 @@
 import DividerWithText from "@/components/__ui__/devidText"
 import GoagleButton from "@/components/__ui__/gogalButton"
 import LoginForm from "@/components/forms/loginForm"
+import GLinearGradient from "@/components/ui/GGradient"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import { useRouter } from "expo-router"
 import { jwtDecode } from "jwt-decode"
@@ -49,7 +50,8 @@ export default function Login() {
   }, [])
 
   return (
-    <View className="bg-white h-full px-4 py-5">
+    <GLinearGradient>
+    <View className="h-full px-4 py-5">
       <TouchableOpacity
         className="py-5"
         onPress={() => {
@@ -64,7 +66,7 @@ export default function Login() {
       </TouchableOpacity>
 
       <View className="flex flex-row justify-center items-center pb-10">
-        <Text className="text-3xl font-poppins-bold">Login</Text>
+        <Text className="text-3xl font-poppins-bold text-white">Login</Text>
       </View>
 
       <GoagleButton name="Sign in with Goagle" icon={goagle} />
@@ -78,7 +80,7 @@ export default function Login() {
       </View>
 
       <View className="flex flex-row justify-center items-center gap-2 pb-10 pt-5">
-        <Text className="font-poppins">Don't have an Account?</Text>
+        <Text className="font-poppins text-white">Don't have an Account?</Text>
         <Text
           className="text-blue-600 font-poppins"
           onPress={() => router.replace("./signup")}
@@ -87,5 +89,6 @@ export default function Login() {
         </Text>
       </View>
     </View>
+    </GLinearGradient>
   )
 }

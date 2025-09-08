@@ -1,4 +1,5 @@
 import AddTodoForm from "@/components/forms/addTodoForm"
+import GLinearGradient from "@/components/ui/GGradient"
 import { useRouter } from "expo-router"
 import { Image, Text, TouchableOpacity, View } from "react-native"
 import back from "../../assets/icon/back.png"
@@ -14,6 +15,7 @@ export default function AddNewTodo () {
     }
 
     return (
+      <GLinearGradient>
         <View className="flex flex-col py-10 h-full px-4 gap-6">
             <TouchableOpacity className="py-5" onPress={() => {
                          if (router.canGoBack()) {
@@ -24,10 +26,11 @@ export default function AddNewTodo () {
                        }}>
                 <Image source={back}  className="w-10 h-10" />
             </TouchableOpacity>
-            <Text className="text-xl font-poppins-bold">Add new todo you propose to work</Text>
+            <Text className="text-xl font-poppins-bold text-white">Add new todo you propose to work</Text>
             <View>
               <AddTodoForm onPress={handleNext}/>
             </View>
         </View>
+      </GLinearGradient>
     )
 }

@@ -19,7 +19,7 @@ export default function HomeTodos(props: IProps) {
   return (
     <View>
       <View className="flex flex-row justify-between items-center px-4 pb-3">
-        <Text className="font-poppins-medium">New Todos</Text>
+        <Text className="font-poppins-medium text-white">New Todos</Text>
         <Text className="font-poppins-medium text-blue-600" onPress={props.onPress}>
           All Todos
         </Text>
@@ -35,6 +35,7 @@ export default function HomeTodos(props: IProps) {
                 title={todo.title}
                 summary={todo.summary}
                 time={todo.time}
+                status={todo.status}
                 index={index}
                 click={() =>
                   router.push({
@@ -45,6 +46,7 @@ export default function HomeTodos(props: IProps) {
                       summary: todo.summary,
                       description: todo.description,
                       time: todo.time,
+                      status:todo.status
                     },
                   })
                 }
