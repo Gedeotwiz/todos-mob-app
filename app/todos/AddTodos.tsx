@@ -9,7 +9,7 @@ export default function AddNewTodo () {
 
     const handleNext = (todoData: { title: string,summary:string, description: string }) => {
         router.push({
-            pathname: './todoTime',
+            pathname: './TodoTime',
             params: todoData,
         })
     }

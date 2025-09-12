@@ -62,3 +62,10 @@ export interface UpdateTodos {
    description: string,
    status: string
 }
+
+export interface UpdateUser {
+   names: string,
+   email: string,
+   phone: string,
+   image: string
+}

@@ -27,7 +27,7 @@ export default function TabTwoScreen() {
       {
               text:'OK',
               onPress: () => {
-           router.replace("../auth/login")
+           router.replace("../auth/Login")
           },
             }
     ]);
@@ -46,7 +46,11 @@ export default function TabTwoScreen() {
       </TouchableOpacity>
       <View className="flex flex-col gap-4 justify-center h-1/2">
          {setting.map((set,index)=>(
-           <SettingCard key={index} name={set.name} title={set.title} icon="chevron-right"/>
+           <SettingCard key={index} name={set.name} title={set.title} icon="chevron-right" onPress={()=>{
+             if(set.title === "Profile"){
+               router.push("../auth/EditProfile");
+             }
+           }}/>
          ))}
       </View>
       <View className="flex flex-col justify-center items-center">

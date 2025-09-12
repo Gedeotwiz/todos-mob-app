@@ -17,7 +17,7 @@ export default function HomeScreen() {
             <SearchInput/>
          </View>
         <Wellcome/>
-        <TodosStatus onPress={()=>router.push("../todos/addTodos")}/>
+        <TodosStatus onPress={()=>router.push("../todos/AddTodos")}/>
         <HomeTodos onPress={()=>router.push("./Todos")} />
      </View>
      </GLinearGradient>

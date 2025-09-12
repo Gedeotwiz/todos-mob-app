@@ -1,13 +1,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { TodoStatus } from '../types/enum';
-import { AddTodo, CreateUserInput, FetchTodos, GetTodosApiResponse, IAPIResponse, loginInput, loginOutput, UpdateTodos } from '../types/integration.type';
+import { AddTodo, CreateUserInput, FetchTodos, GetTodosApiResponse, IAPIResponse, loginInput, loginOutput, UpdateTodos ,UpdateUser} from '../types/integration.type';
 
 
 export const authApi = createApi({
   reducerPath: 'authApi', 
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://498abedcf5f7.ngrok-free.app/api/v1',
+    baseUrl: 'https://35bd665082b5.ngrok-free.app/api/v1',
     prepareHeaders: async (headers) => {
       const token = await AsyncStorage.getItem('token');
       if (token) {
@@ -35,7 +35,7 @@ export const authApi = createApi({
     }),
 
     userLogedIn:builder.query<any,void>({
-       query:()=>`users/id`
+       query:()=>`users/me`
     }),
 
     addTodos:builder.mutation<IAPIResponse<null>,AddTodo>({
@@ -74,9 +74,17 @@ getTodosByStatus: builder.query<GetTodosApiResponse, { status: TodoStatus }>({
      body:DTO
    }),
     invalidatesTags: [{ type: 'GET_TODO', id: 'LIST' }],
- })
+ }),
+
+   updateUserProfile: builder.mutation<any, FormData>({
+  query: (formData) => ({
+    url: "/users/me",
+    method: "PATCH",
+    body: formData,
+  }),
+})
 
   }),
 });
 
-export const {useSignUpMutation, useLoginMutation ,useUserLogedInQuery,useAddTodosMutation,useGetTodosQuery,useGetTodosByStatusQuery,useDoneTodoUpdateMutation} = authApi;
+export const {useSignUpMutation, useLoginMutation ,useUserLogedInQuery,useAddTodosMutation,useGetTodosQuery,useGetTodosByStatusQuery,useDoneTodoUpdateMutation,useUpdateUserProfileMutation} = authApi;
