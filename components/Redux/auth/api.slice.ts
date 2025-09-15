@@ -7,7 +7,7 @@ import { AddTodo, CreateUserInput, FetchTodos, GetTodosApiResponse, IAPIResponse
 export const authApi = createApi({
   reducerPath: 'authApi', 
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://35bd665082b5.ngrok-free.app/api/v1',
+    baseUrl: 'https://7dd524a23d79.ngrok-free.app/api/v1',
     prepareHeaders: async (headers) => {
       const token = await AsyncStorage.getItem('token');
       if (token) {
@@ -16,7 +16,7 @@ export const authApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ['GET_TODO'],
+  tagTypes: ['GET_TODO','GET_USER'],
   endpoints: (builder) => ({
     signUp: builder.mutation<IAPIResponse<null>, CreateUserInput>({
       query: (body) => ({
@@ -35,7 +35,8 @@ export const authApi = createApi({
     }),
 
     userLogedIn:builder.query<any,void>({
-       query:()=>`users/me`
+       query:()=>`users/me`,
+       providesTags: [{ type: "GET_USER", id: "LIST" }],
     }),
 
     addTodos:builder.mutation<IAPIResponse<null>,AddTodo>({
@@ -76,15 +77,26 @@ getTodosByStatus: builder.query<GetTodosApiResponse, { status: TodoStatus }>({
     invalidatesTags: [{ type: 'GET_TODO', id: 'LIST' }],
  }),
 
-   updateUserProfile: builder.mutation<any, FormData>({
-  query: (formData) => ({
+ uploadImage: builder.mutation<{ url: string }, FormData>({
+      query: (body) => ({
+        url: 'users/upload-image',
+        method: 'POST',
+        body,
+      }),
+    }),
+
+   updateUserProfile: builder.mutation<any, FormData | UpdateUser>({
+  query: (body) => ({
     url: "/users/me",
     method: "PATCH",
-    body: formData,
+    body: body as any,
   }),
+  invalidatesTags: [{ type: 'GET_USER', id: 'LIST' }],
 })
 
   }),
 });
 
-export const {useSignUpMutation, useLoginMutation ,useUserLogedInQuery,useAddTodosMutation,useGetTodosQuery,useGetTodosByStatusQuery,useDoneTodoUpdateMutation,useUpdateUserProfileMutation} = authApi;
+export const {useSignUpMutation, useLoginMutation ,useUserLogedInQuery,
+  useAddTodosMutation,useGetTodosQuery,useGetTodosByStatusQuery,useDoneTodoUpdateMutation,
+  useUpdateUserProfileMutation,useUploadImageMutation } = authApi;

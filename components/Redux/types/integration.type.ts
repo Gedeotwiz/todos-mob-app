@@ -67,5 +67,5 @@ export interface UpdateUser {
    names: string,
    email: string,
    phone: string,
-   image: string
+   image?: string
 }
