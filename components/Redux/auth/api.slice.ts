@@ -108,7 +108,15 @@ forgotPassword: builder.mutation<{ message: string }, { email: string }>({
     method:"POST",
     body
    })
-  })  
+  }),
+  
+  changePassword:builder.mutation<{message:string},{email:string,otp:string,newPassword:string}>({
+    query:(body)=>({
+      url:"auth/reset-password",
+      method:"POST",
+      body
+    })
+  })
 
   }),
 });
@@ -116,5 +124,5 @@ forgotPassword: builder.mutation<{ message: string }, { email: string }>({
 export const {useSignUpMutation, useLoginMutation ,useUserLogedInQuery,
   useAddTodosMutation,useGetTodosQuery,useGetTodosByStatusQuery,useDoneTodoUpdateMutation,
   useUpdateUserProfileMutation,useUploadImageMutation ,useForgotPasswordMutation,
-  useVerifyOtpMutation
+  useVerifyOtpMutation,useChangePasswordMutation
 } = authApi;
