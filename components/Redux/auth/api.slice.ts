@@ -7,7 +7,7 @@ import { AddTodo, CreateUserInput, FetchTodos, GetTodosApiResponse, IAPIResponse
 export const authApi = createApi({
   reducerPath: 'authApi', 
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://7dd524a23d79.ngrok-free.app/api/v1',
+    baseUrl: 'https://a5da4ce2a9f8.ngrok-free.app/api/v1',
     prepareHeaders: async (headers) => {
       const token = await AsyncStorage.getItem('token');
       if (token) {
@@ -92,11 +92,29 @@ getTodosByStatus: builder.query<GetTodosApiResponse, { status: TodoStatus }>({
     body: body as any,
   }),
   invalidatesTags: [{ type: 'GET_USER', id: 'LIST' }],
-})
+}),
+
+forgotPassword: builder.mutation<{ message: string }, { email: string }>({
+      query: (body) => ({
+        url: "auth/forgot-password", 
+        method: "POST",
+        body,
+      }),
+    }),
+
+  verifyOtp:builder.mutation<{message:string},{email:string,otp:string}>({
+   query:(body) =>({
+    url:"auth/verify-otp",
+    method:"POST",
+    body
+   })
+  })  
 
   }),
 });
 
 export const {useSignUpMutation, useLoginMutation ,useUserLogedInQuery,
   useAddTodosMutation,useGetTodosQuery,useGetTodosByStatusQuery,useDoneTodoUpdateMutation,
-  useUpdateUserProfileMutation,useUploadImageMutation } = authApi;
+  useUpdateUserProfileMutation,useUploadImageMutation ,useForgotPasswordMutation,
+  useVerifyOtpMutation
+} = authApi;

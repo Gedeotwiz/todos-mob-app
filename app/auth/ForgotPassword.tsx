@@ -3,9 +3,12 @@ import GLinearGradient from "@/components/ui/GGradient";
 import { useRouter } from "expo-router";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import back from "../../assets/icon/back.png";
+  
+interface IProps{
+  email:string
+}
 
-
-export default function ForgotPassword(){
+export default function ForgotPassword(props:IProps){
 
     const router = useRouter()
    return (
@@ -19,7 +22,11 @@ export default function ForgotPassword(){
             <Text className="font-poppins text-white">Enter the email address registered with your account. We'll send you a link to reset your password.</Text>
           </View>
           <View>
-             <ForgotForm onPress={()=>router.push("./ResentPassword")}/>
+             <ForgotForm 
+             onPress={(email) => router.push({ pathname: "./VerfyOtp", params: { email } })} 
+              onClick={() => router.push("/auth/Login")} 
+            />
+
           </View>
      </View>
      </GLinearGradient>

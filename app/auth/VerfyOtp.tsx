@@ -1,12 +1,14 @@
-import ResentForm from "@/components/forms/ResentForm";
+
 import GLinearGradient from "@/components/ui/GGradient";
-import { useRouter } from "expo-router";
+import { useRouter,useLocalSearchParams } from "expo-router";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import back from "../../assets/icon/back.png";
+import VerfyForm from "@/components/forms/Verfy-otp-Form";
 
 
-export default function ResentPassword(){
 
+export default function VerfyOtp(){
+    const { email } = useLocalSearchParams<{ email: string }>();
     const router = useRouter()
    return (
     <GLinearGradient>
@@ -16,10 +18,13 @@ export default function ResentPassword(){
           </TouchableOpacity>
           <View>
             <Text className="font-poppins-medium text-xl py-5 text-white">Please verify your email address</Text>
-            <Text className="font-poppins text-white">We’ve sent an email to becca@gmail.com, please enter the code below.</Text>
+            <Text className="font-poppins text-white">We’ve sent an email to {email}, please enter the code below.</Text>
           </View>
           <View>
-             <ResentForm onPress={()=>router.push("./Login")}/>
+             <VerfyForm 
+               onPress={(email,otp) => router.push({ pathname: "./ChangePassword", params: { email,otp } })} 
+               onClick={() => router.push("/auth/ForgotPassword")} 
+              />
           </View>
      </View>
      </GLinearGradient>
