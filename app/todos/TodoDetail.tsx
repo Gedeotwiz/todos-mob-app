@@ -4,10 +4,14 @@ import GLinearGradient from "@/components/ui/GGradient"
 import { useLocalSearchParams, useRouter } from "expo-router"
 import { Alert, Image, Text, TouchableOpacity, View } from "react-native"
 import back from "../../assets/icon/back.png"
+import { Modal } from "react-native"
+import { useState } from "react"
+import UpdateTime from "@/components/__ui__/UpdateTime"
 
 export default function TodoDetails() {
   const router = useRouter()
   const { id, title, summary, description, time, status } = useLocalSearchParams()
+  const [visible, setVisible] = useState(false);
 
   const isDone = status === 'DONE'
 
@@ -18,6 +22,7 @@ export default function TodoDetails() {
     title: String(title),
     summary: String(summary),
     description: String(description),
+    time:String(time),
     status: "DONE",
   }
 
@@ -30,6 +35,13 @@ export default function TodoDetails() {
       Alert.alert("Error", "Failed to update todo")
       console.error(err)
     }
+  }
+
+  const HandeUpdate = () => {
+    setVisible(true)
+  }
+  const CloseModal = () =>{
+    setVisible(false)
   }
 
   return (
@@ -59,9 +71,25 @@ export default function TodoDetails() {
             <DoneCard name="done" title="Done" onPress={handleDone} />
           )}
           <DeleteCard name="delete" title="Delete" />
-          <EditCard name="edit" title="Update" />
+          <EditCard name="edit" title="Update" onPress={HandeUpdate}/>
         </View>
       </View>
+      <Modal
+           animationType="fade"
+          transparent={true}
+          visible={visible}
+          onRequestClose={CloseModal}
+        >
+        <View style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.5)", justifyContent:"flex-end" }}>
+         <View style={{ backgroundColor: "white",padding:20, borderTopLeftRadius: 20,borderTopRightRadius: 20,}}>
+         <UpdateTime 
+            onPress={CloseModal} 
+            onSuccess={CloseModal}  
+/>
+        </View>
+      </View>
+    </Modal>
+
     </GLinearGradient>
   )
 }

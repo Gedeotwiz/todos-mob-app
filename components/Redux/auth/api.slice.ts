@@ -7,7 +7,7 @@ import { AddTodo, CreateUserInput, FetchTodos, GetTodosApiResponse, IAPIResponse
 export const authApi = createApi({
   reducerPath: 'authApi', 
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://a5da4ce2a9f8.ngrok-free.app/api/v1',
+    baseUrl: 'https://822cc2da0f0e.ngrok-free.app/api/v1',
     prepareHeaders: async (headers) => {
       const token = await AsyncStorage.getItem('token');
       if (token) {

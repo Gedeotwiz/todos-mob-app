@@ -45,7 +45,8 @@ export const DeleteCard=(props:IProps) => {
 
 export const EditCard=(props:IProps) => {
   return (
-    <View className="flex flex-col items-center justify-center p-2 bg-[#05243E] w-24 rounded-lg" 
+    <TouchableOpacity onPress={props.onPress}>
+        <View className="flex flex-col items-center justify-center p-2 bg-[#05243E] w-24 rounded-lg" 
       style={{
     shadowColor: "#0EA5E9",       
     shadowOffset: { width: 1, height: 2 }, 
@@ -53,9 +54,10 @@ export const EditCard=(props:IProps) => {
     shadowRadius: 3.84,        
     elevation: 5,          
   }}
-    >
+  >
       <MaterialIcons name={props.name} size={24} color="yellow" />
       <Text className="text-sm mt-1 text-white">{props.title}</Text>
     </View>
+    </TouchableOpacity>
   );
 }

@@ -39,7 +39,7 @@ export default function VerfyForm(props:IProps){
                 {({values, handleChange,handleSubmit, isSubmitting })=>(
                      <View className="flex flex-col gap-8 pt-20">
                         <OtpInputField code={values.code} handleChange={handleChange("code")} />
-                        <FormButton onPress={handleSubmit} disabled={isSubmitting} name="Submit"/>
+                        <FormButton onPress={handleSubmit} disabled={isSubmitting} name="Verify"/>
                     </View>
                     
                 )}

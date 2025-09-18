@@ -60,6 +60,7 @@ export interface UpdateTodos {
    title: string,
    summary: string,
    description: string,
+   time:string,
    status: string
 }
 

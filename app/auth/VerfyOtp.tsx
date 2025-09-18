@@ -17,8 +17,9 @@ export default function VerfyOtp(){
            <Image source={back} className="w-10 h-10" />
           </TouchableOpacity>
           <View>
-            <Text className="font-poppins-medium text-xl py-5 text-white">Please verify your email address</Text>
-            <Text className="font-poppins text-white">We’ve sent an email to {email}, please enter the code below.</Text>
+            <Text className="font-poppins-bold text-xl py-5 text-white">Verify account</Text>
+            <Text className="font-poppins text-white">By verifying your account, you data will be secured and be default you are accepting our terms and policies</Text>
+            <Text className="font-poppins">Check otp code to <Text className="text-blue-500 font-poppins">{email}</Text></Text>
           </View>
           <View>
              <VerfyForm 
