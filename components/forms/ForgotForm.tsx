@@ -28,8 +28,9 @@ export default function ForgotForm(props: IProps) {
             setSubmitting(false);
 
             props.onPress(values.email);
-          } catch (error) {
-            console.log(`error is ${error}`);
+          }catch (error: any) {
+            console.log("error is", error); 
+            Alert.alert("Error", error?.data?.message || "Something went wrong");
           }
         }}
       >

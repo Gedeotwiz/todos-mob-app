@@ -7,7 +7,7 @@ import { AddTodo, CreateUserInput, FetchTodos, GetTodosApiResponse, IAPIResponse
 export const authApi = createApi({
   reducerPath: 'authApi', 
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://822cc2da0f0e.ngrok-free.app/api/v1',
+    baseUrl: 'https://dfd3bc942add.ngrok-free.app/api/v1',
     prepareHeaders: async (headers) => {
       const token = await AsyncStorage.getItem('token');
       if (token) {
@@ -116,6 +116,13 @@ forgotPassword: builder.mutation<{ message: string }, { email: string }>({
       method:"POST",
       body
     })
+  }),
+  deleteDoto:builder.mutation<{message:string},{id:string}>({
+    query:({id})=>({
+      url:`todos/${id}`,
+      method:"DELETE"
+    }),
+    invalidatesTags: [{ type: 'GET_TODO', id: 'LIST' }],
   })
 
   }),
@@ -124,5 +131,5 @@ forgotPassword: builder.mutation<{ message: string }, { email: string }>({
 export const {useSignUpMutation, useLoginMutation ,useUserLogedInQuery,
   useAddTodosMutation,useGetTodosQuery,useGetTodosByStatusQuery,useDoneTodoUpdateMutation,
   useUpdateUserProfileMutation,useUploadImageMutation ,useForgotPasswordMutation,
-  useVerifyOtpMutation,useChangePasswordMutation
+  useVerifyOtpMutation,useChangePasswordMutation,useDeleteDotoMutation
 } = authApi;

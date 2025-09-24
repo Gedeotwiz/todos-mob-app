@@ -19,7 +19,7 @@ export default function ForgotPassword(props:IProps){
           </TouchableOpacity>
           <View>
             <Text className="font-poppins-bold text-2xl py-5 text-white">Forgot Password</Text>
-            <Text className="font-poppins text-white">Enter the email address registered with your account. We'll send you a link to reset your password.</Text>
+            <Text className="font-poppins text-white">Enter the email address registered with your account. We'll send you otp code to reset your password.</Text>
           </View>
           <View>
              <ForgotForm 

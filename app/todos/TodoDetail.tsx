@@ -1,5 +1,5 @@
 import { DeleteCard, DoneCard, EditCard } from "@/components/__ui__/ActionCard"
-import { useDoneTodoUpdateMutation } from "@/components/Redux/auth/api.slice"
+import { useDeleteDotoMutation, useDoneTodoUpdateMutation } from "@/components/Redux/auth/api.slice"
 import GLinearGradient from "@/components/ui/GGradient"
 import { useLocalSearchParams, useRouter } from "expo-router"
 import { Alert, Image, Text, TouchableOpacity, View } from "react-native"
@@ -17,6 +17,7 @@ export default function TodoDetails() {
 
 
   const [markDone] = useDoneTodoUpdateMutation()
+  const [DeleteTodo] = useDeleteDotoMutation()
 
   const data = {
     title: String(title),
@@ -42,6 +43,17 @@ export default function TodoDetails() {
   }
   const CloseModal = () =>{
     setVisible(false)
+  }
+
+  const HandleDelete = async () =>{
+    try {
+       const res = await DeleteTodo({id:String(id)}).unwrap()
+       Alert.alert('success',res.message)
+       router.push("/(tabs)/Todos")
+    } catch (error) {
+      Alert.alert("Error", 'Fail to delete todo')
+      console.log(error)
+    }
   }
 
   return (
@@ -70,7 +82,7 @@ export default function TodoDetails() {
           {!isDone && (
             <DoneCard name="done" title="Done" onPress={handleDone} />
           )}
-          <DeleteCard name="delete" title="Delete" />
+          <DeleteCard name="delete" title="Delete" onPress={HandleDelete}/>
           <EditCard name="edit" title="Update" onPress={HandeUpdate}/>
         </View>
       </View>

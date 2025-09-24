@@ -17,8 +17,8 @@ export default function ChangePassword(){
            <Image source={back} className="w-10 h-10" />
           </TouchableOpacity>
           <View>
-            <Text className="font-poppins-medium text-xl py-5 text-white">Enter new password you need to use</Text>
-            <Text className="font-poppins text-white">And confirm if you aggree to use new password</Text>
+            <Text className="font-poppins-medium text-xl py-5 text-white">Enter new password</Text>
+            <Text className="font-poppins text-white">You need to use and confirm if you aggree to use new password</Text>
           </View>
           <View>
              <ChangePasswordForm/>
