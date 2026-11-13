@@ -14,7 +14,7 @@ type FormValues = {
 export default function EditProfileForm({ onSubmit }: { onSubmit: (values: FormValues) => void }) {
   const { data: user } = useUserLogedInQuery();
 
-  const { names, email, phone } = user.payload;
+  const { names = "", email = "", phone = "" } = user?.payload ?? {};
 
   return (
     <Formik<FormValues>

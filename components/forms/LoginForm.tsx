@@ -80,7 +80,7 @@ export default function LoginForm(Props:IProps) {
 
              <View>
             <View className='flex flex-row justify-end items-end'>
-                <Text className='text-blue-600 font-poppins' onPress={Props.onPress}>Forgot Password</Text>
+                <Text className='text-violet-600 font-poppins-medium' onPress={Props.onPress}>Forgot password?</Text>
             </View>
               <Input 
                 value={values.password}
@@ -99,7 +99,7 @@ export default function LoginForm(Props:IProps) {
               onChange={setKeepSignedIn}
             />
             <View>
-             <FormButton onPress={handleSubmit as any} name={isLoading ? "Loading..." : "Submit"}
+             <FormButton onPress={handleSubmit as any} name={isLoading ? "Signing in..." : "Sign in"}
                   disabled={isSubmitting || isLoading}/>
             </View>
           </View>

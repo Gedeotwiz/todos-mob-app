@@ -13,31 +13,32 @@ export default function AddTodoForm(props: { onPress: (data: { title: string,sum
           onSubmit={(values) => props.onPress(values)}
         >
         {({ values, handleBlur, handleChange, handleSubmit }) => (
-           <View className="flex flex-col gap-6">
+          <View className="flex flex-col gap-4">
                <Input 
-                   placeholder="Enter title"
+                   placeholder="e.g. Prepare sprint review"
                    value={values.title}
                    onChangeText={handleChange('title')}
                    onBlur={handleBlur('title')}
-                   label='Title'
+                   label='Task title'
                />
                <Input 
-                   placeholder="Enter summary"
+                   placeholder="What does success look like?"
                    value={values.summary}
                    size='large'
                    onChangeText={handleChange('summary')}
                    onBlur={handleBlur('summary')}
-                   label='Todo summary'
+                   label='Short summary'
                 />
               <Input 
-                   placeholder="Enter description"
+                   placeholder="Add details, notes, or steps..."
                    multiline={true}
+                   textStyle={{ minHeight: 92, textAlignVertical: "top" }}
                    value={values.description}
                    onChangeText={handleChange('description')}
                    onBlur={handleBlur('description')}
-                   label='Description'
+                   label='Description (optional)'
               />
-              <FormButton name="Next" onPress={() => handleSubmit()}/>
+              <FormButton name="Continue to due date" onPress={() => handleSubmit()}/>
            </View>
         )}
         </Formik>
