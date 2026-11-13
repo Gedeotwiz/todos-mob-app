@@ -8,7 +8,7 @@ import back from "../../assets/icon/back.png"
 import { useRouter } from "expo-router";
 
 export default function UpdateProfile() {
-  const { data: user, isLoading: isUserLoading } = useUserLogedInQuery();
+  const { data: user, isLoading: isUserLoading, isError, refetch } = useUserLogedInQuery();
   const router = useRouter()
   const [updateUserProfile] = useUpdateUserProfileMutation();
   const [upload] = useUploadImageMutation()
@@ -84,7 +84,33 @@ const submitWithJson = async (payload: { names: string; email: string; phone: st
     }
   };
 
-  if (isUserLoading) return <ActivityIndicator size="large" color="blue" />;
+  if (isUserLoading) {
+    return (
+      <GLinearGradient>
+        <View className="flex-1 items-center justify-center">
+          <ActivityIndicator size="large" color="white" />
+        </View>
+      </GLinearGradient>
+    );
+  }
+
+  if (!user?.payload) {
+    return (
+      <GLinearGradient>
+        <View className="flex-1 items-center justify-center px-6 gap-4">
+          <Text className="text-center text-white font-poppins">
+            {isError ? "Could not load your profile." : "Profile information is unavailable."}
+          </Text>
+          <TouchableOpacity className="rounded-lg bg-white/20 px-5 py-3" onPress={() => refetch()}>
+            <Text className="text-white font-poppins-medium">Try again</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => router.back()}>
+            <Text className="text-white font-poppins">Go back</Text>
+          </TouchableOpacity>
+        </View>
+      </GLinearGradient>
+    );
+  }
 
   return (
     <GLinearGradient>
@@ -100,12 +126,12 @@ const submitWithJson = async (payload: { names: string; email: string; phone: st
           <View className="flex flex-col justify-center items-center gap-1">
                <TouchableOpacity onPress={pickImage}>
           <Image
-            source={{ uri: image || user?.payload?.image }}
+            source={image || user.payload.image ? { uri: image || user.payload.image } : require("../../assets/images/profile.jpeg")}
             className="w-32 h-32 rounded-full border-4 border-white"
           />
         </TouchableOpacity>
-           <Text className="text-white font-poppins">{user.payload?.names}</Text>
-           <Text className="text-white font-poppins">{user.payload?.email}</Text>
+           <Text className="text-white font-poppins">{user.payload.names}</Text>
+           <Text className="text-white font-poppins">{user.payload.email}</Text>
           </View>
         
         <View className="w-full">

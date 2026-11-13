@@ -90,7 +90,7 @@ export default function SignUpForm(){
                        onChange={setKeepSignedIn}
                     />
                 <View>
-                 <FormButton onPress={handleSubmit as any} name={isLoading ? "Loading..." : "Submit"}
+                 <FormButton onPress={handleSubmit as any} name={isLoading ? "Creating account..." : "Create account"}
                   disabled={isSubmitting || isLoading}/>
                 </View>
               </View>

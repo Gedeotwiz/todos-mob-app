@@ -2,11 +2,12 @@ import { settingIcon, timeIcon, todoIcon, userIcon } from '@/components/ui/IconT
 import { BottomNavigation, BottomNavigationTab } from '@ui-kitten/components';
 import { Href, Slot, usePathname, useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, View } from 'react-native';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function TabLayout() {
   const router = useRouter();
   const pathname = usePathname();
+  const insets = useSafeAreaInsets();
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const routes: Href[] = ["/", "/Todos", "/Time", "/Setting"];
@@ -19,25 +20,30 @@ export default function TabLayout() {
   }, [pathname]);
 
   return (
-    <SafeAreaView className='flex-1'>
-      <View className='flex-1'>
+    <SafeAreaView className='flex-1' edges={['top']}>
+      <SafeAreaView className='flex-1' edges={['left', 'right']}>
         <Slot />
-      </View>
+      </SafeAreaView>
 
-      <BottomNavigation
-        style={{ backgroundColor: '#05243E',paddingBottom:46 }} 
-        appearance="noIndicator"
-        selectedIndex={selectedIndex}
-        onSelect={(index) => {
-          setSelectedIndex(index);
-          router.push(routes[index]);
-        }}
+      <SafeAreaView
+        edges={['bottom']}
+        style={{ backgroundColor: '#ffffff', borderTopWidth: 1, borderTopColor: '#e8e9f0' }}
       >
-        <BottomNavigationTab icon={userIcon} title="User" />
-        <BottomNavigationTab icon={todoIcon} title="Todos" />
-        <BottomNavigationTab icon={timeIcon} title="Time" />
-        <BottomNavigationTab icon={settingIcon} title="Setting" />
-      </BottomNavigation>
+        <BottomNavigation
+          style={{ backgroundColor: '#ffffff', paddingTop: 4 }}
+          appearance="noIndicator"
+          selectedIndex={selectedIndex}
+          onSelect={(index) => {
+            setSelectedIndex(index);
+            router.push(routes[index]);
+          }}
+        >
+          <BottomNavigationTab icon={userIcon} title="Board" />
+          <BottomNavigationTab icon={todoIcon} title="Todos" />
+          <BottomNavigationTab icon={timeIcon} title="Time" />
+          <BottomNavigationTab icon={settingIcon} title="Setting" />
+        </BottomNavigation>
+      </SafeAreaView>
     </SafeAreaView>
   );
 }
